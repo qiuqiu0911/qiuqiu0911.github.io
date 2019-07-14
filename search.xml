@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[linux静态路由配置]]></title>
+    <url>%2F2019%2F07%2F14%2Flinux%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[如果要添加一条静态路由，命令为:route add -net 192.56.76.0 netmask 255.255.255.0 dev eth0 在/etc/sysconfig/static-routes文件中添加格式为：any net 192.56.76.0 netmask 255.255.255.0 dev eth0]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[随拍-宁德]]></title>
+    <url>%2F2019%2F07%2F14%2F%E9%9A%8F%E6%8B%8D-%E5%AE%81%E5%BE%B7%2F</url>
+    <content type="text"><![CDATA[]]></content>
+      <tags>
+        <tag>life</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[hexo配置历史]]></title>
     <url>%2F2019%2F07%2F14%2Fhexo%E9%85%8D%E7%BD%AE%E5%8E%86%E5%8F%B2%2F</url>
-    <content type="text"><![CDATA[主题配置 _config.yml中,配置主题为theme: next 采用Hexo方式配置主题：123456789theme_config:scheme: Geminimenu: home: / || home about: /about/ || user tags: /tags/ || tags #categories: /categories/ || th archives: /archives/ || archive # Social Links 方便升级主题使用这一方式，你的全部配置都将置于 hexo 主要配置文件中（hexo/_config.yml），并且不需要修改 next/_config.yml，或者创建什么其他的文件。但是所有的主题选项必须放置在 theme_config 后，并全部增加两个空格的缩进。 开启搜索 安装npm install hexo-generator-searchdb --save 修改站点配置_config.yml 12345search: path: search.xml field: post format: html limit: 10000 修改主题配置 12local_search: enable: true]]></content>
+    <content type="text"><![CDATA[主题配置 _config.yml中,配置主题为theme: next 采用Hexo方式配置主题：123456789theme_config:scheme: Geminimenu: home: / || home about: /about/ || user tags: /tags/ || tags #categories: /categories/ || th archives: /archives/ || archive # Social Links 方便升级主题使用这一方式，你的全部配置都将置于 hexo 主要配置文件中（hexo/_config.yml），并且不需要修改 next/_config.yml，或者创建什么其他的文件。但是所有的主题选项必须放置在 theme_config 后，并全部增加两个空格的缩进。 开启搜索 安装npm install hexo-generator-searchdb --save 修改站点配置_config.yml 12345search: path: search.xml field: post format: html limit: 10000 修改主题配置 12local_search: enable: true 开启侧边栏头像 上传文件到source/uploads文件夹(如果没有该文件夹则手动创建) 修改主题配置123456789avatar: # In theme directory (source/images): /images/avatar.gif # In site directory (source/uploads): /uploads/avatar.gif # You can also use other linking images. url: /uploads/avatar.jpg # If true, the avatar would be dispalyed in circle. rounded: true # If true, the avatar would be rotated with the cursor. rotated: false]]></content>
       <tags>
         <tag>hexo</tag>
       </tags>
