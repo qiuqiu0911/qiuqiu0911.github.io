@@ -105,6 +105,10 @@ theme_config:
   social:
     Github:  https://github.com/qiuqiu0911 || github
     Weibo: https://weibo.com/2301832825 || weibo
+  social_icons:
+    enable: true
+    icons_only: true
+    transition: true
   # Local search
   # Dependencies: https://github.com/theme-next/hexo-generator-searchdb
   local_search:
