@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[IDEA之条件断点]]></title>
+    <url>%2F2019%2F08%2F02%2FIDEA%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%96%AD%E7%82%B9%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[elasticsearch防止脑裂的配置]]></title>
+    <url>%2F2019%2F08%2F02%2Felasticsearch%E9%98%B2%E6%AD%A2%E8%84%91%E8%A3%82%E7%9A%84%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[什么是脑裂Elasticsearch不仅仅是 Lucene，并且也不仅仅只是一个全文搜索引擎。它可以被下面这样准确的形容： 一个分布式的实时文档存储，每个字段 可以被索引与搜索 一个分布式实时分析搜索引擎 能胜任上百个服务节点的扩展，并支持 PB 级别的结构化或者非结构化数据。 正常情况下，es集群中只有一个主节点，主节点负责管理整个集群，集群的所有节点都会选择同一个节点作为主节点所以无论访问那个节点都可以查看集群的状态信息。而脑裂就是指集群中从节点在选择主节点时出现了分歧，导致集群中出现了多个主节点。这样的脑裂状态直接让节点失去了集群的正确状态，导致集群不能正常工作，也会产生数据不一致的情况。 脑裂产生的可能原因 网络问题：集群间的网络延迟导致一些节点访问不到master，认为master挂掉了从而选举出新的master，并对master上的分片和副本标红，分配新的主分片 节点负载：主节点的角色既为master又为data，访问量较大时可能会导致ES停止响应造成大面积延迟，此时其他节点得不到主节点的响应认为主节点挂掉了，会重新选取主节点。 内存回收：data节点上的ES进程占用的内存较大，引发JVM的大规模内存回收，造成ES进程失去响应。 防止脑裂的相关配置Elasticsearch中内建的Zen发现机制 多播:也叫组播，指一个节点可以向多台机器发送请求。ES 不建议生产环境使用这种方式，对于一个大规模的集群，组播会产生大量不必要的通信。 单播:一个节点加入一个现有集群，或者组建一个新的集群时，发送请求到一台主机。当一个节点联系到单播列表中的成员时，它就会得到整个集群所有节点的状态，然后它会联系 master 节点，并加入集群。 123discovery.zen.minimum_master_nodes: 2discovery.zen.ping.multicast.enabled: falsediscovery.zen.ping.unicast.hosts: ["localhost:9001","localhost:9101","localhost:9701"] minimum_master_nodes建议配置为(具有master资格的节点的数量/2)+1]]></content>
+      <tags>
+        <tag>elasticsearch</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java泛型]]></title>
+    <url>%2F2019%2F07%2F22%2FJava%E6%B3%9B%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[泛型只在编译阶段有效，是为了解决不确定具体对象类型的问题。约定俗成的符号: E代表Element，用于集合中的元素 T代表 the Type of object，表示某个类 K代表Key，V代表Value，用于键值对元素。]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MyBatis参数绑定]]></title>
     <url>%2F2019%2F07%2F15%2FMyBatis%E5%8F%82%E6%95%B0%E7%BB%91%E5%AE%9A%2F</url>
     <content type="text"><![CDATA[合理使用数据库访问框架提供的防注入机制，可以有效防止SQL注入。如Mybatis提供的#{}绑定参数，从而防止SQL注入。${}相当于使用字符串拼接SQL mybatis中的#和$的区别： 1、#将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。 如：where username=#{username}，如果传入的值是111,那么解析成sql时的值为where username=”111”, 如果传入的值是id，则解析成的sql为where username=”id”. 2、$将传入的数据直接显示生成在sql中。 如：where username=${username}，如果传入的值是111,那么解析成sql时的值为where username=111； 如果传入的值是;drop table user;，则解析成的sql为：select id, username, password, role from user where username=;drop table user; 3、#方式能够很大程度防止sql注入，$方式无法防止Sql注入。 4、$方式一般用于传入数据库对象，例如传入表名. 5、一般能用#的就别用$，若不得不使用“${xxx}”这样的参数，要手工地做好过滤工作，来防止sql注入攻击。 6、在MyBatis中，“${xxx}”这样格式的参数会直接参与SQL编译，从而不能避免注入攻击。但涉及到动态表名和列名时，只能使用“${xxx}”这样的参数格式。所以，这样的参数需要我们在代码中手工进行处理来防止注入。 【结论】在编写MyBatis的映射语句时，尽量采用“#{xxx}”这样的格式。若不得不使用“${xxx}”这样的参数，要手工地做好过滤工作，来防止SQL注入攻击。https://www.cnblogs.com/mmzs/p/8398405.html]]></content>
@@ -46,8 +67,8 @@
     <url>%2F2019%2F07%2F14%2FCAS%E7%AE%80%E6%9E%90%2F</url>
     <content type="text"><![CDATA[CAS结构体系从结构体系看，CAS包括两部分：CAS Server和CAS Client。 CAS Server负责完成对用户的认证工作, 需要独立部署, CAS Server 会处理用户名 / 密码等凭证 (Credentials)。 负责处理对客户端受保护资源的访问请求，需要对请求方进行身份认证时，重定向到CAS Server进行认证。（原则上，客户端应用不再接受任何的用户名密码等 Credentials）。CAS Client 与受保护的客户端应用部署在一起，以 Filter 方式保护受保护的资源。 CAS凭证验证 CAS Client 与受保护的客户端应用部署在一起，以Filter方式保护Web应用的受保护资源，过滤从客户端过来的每一个Web请求，同时，CAS Client 会分析HTTP请求中是否包含请求Service Ticket( ST上图中的Ticket) ，如果没有，则说明该用户是没有经过认证的；于是CAS Client 会重定向用户请求到 CAS Server（Step 2），并传递Service（要访问的目的资源地址）。 Step 3是用户认证过程，如果用户提供了正确的Credentials， CAS Server随机产生一个相当长度、唯一、不可伪造的Service Ticket，并缓存以待将来验证，并且重定向用户到Service 所在地址（附带刚才产生的Service Ticket ）, 并为客户端浏览器设置一个Ticket Granted Cookie（TGC）；CAS Client 在拿到Service和新产生的 Ticket过后，在Step 5和Step6中与CAS Server进行身份核实，以确保 Service Ticket 的合法性。 CAS术语CAS系统中设计了5中票据：TGC、ST、PGT、PGTIOU、PT。 Ticket-granting cookie(TGC)：存放用户身份认证凭证的cookie，在浏览器和CAS Server间通讯时使用，并且只能基于安全通道传输（Https），是CAS Server用来明确用户身份的凭证； Service ticket(ST)：服务票据，服务的惟一标识码,由CAS Server发出（Http传送），通过客户端浏览器到达业务服务器端；一个特定的服务只能有一个惟一的ST； Proxy-Granting ticket（PGT）：由CAS Server颁发给拥有ST凭证的服务，PGT绑定一个用户的特定服务，使其拥有向CAS Server申请，获得PT的能力； Proxy-Granting Ticket I Owe You（PGTIOU）:作用是将通过凭证校验时的应答信息由CAS Server 返回给CAS Client，同时，与该PGTIOU对应的PGT将通过回调链接传给Web应用。Web应用负责维护PGTIOU与PGT之间映射关系的内容表； Proxy Ticket (PT)：是应用程序代理用户身份对目标程序进行访问的凭证；]]></content>
       <tags>
-        <tag>CAS</tag>
         <tag>Java</tag>
+        <tag>CAS</tag>
       </tags>
   </entry>
   <entry>

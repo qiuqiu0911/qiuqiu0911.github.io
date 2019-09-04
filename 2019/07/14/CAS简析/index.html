@@ -32,21 +32,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
-
-
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
 
 
@@ -57,6 +42,21 @@
 
 
   <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0">
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
 
 
 
@@ -74,6 +74,7 @@
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     fancybox: false,
+    mediumzoom: false,
     fastclick: false,
     lazyload: false,
     tabs: true,
@@ -93,10 +94,8 @@
   };
 </script>
 
-
-
   <meta name="description" content="CAS结构体系从结构体系看，CAS包括两部分：CAS Server和CAS Client。   CAS Server负责完成对用户的认证工作, 需要独立部署, CAS Server 会处理用户名 / 密码等凭证 (Credentials)。 负责处理对客户端受保护资源的访问请求，需要对请求方进行身份认证时，重定向到CAS Server进行认证。（原则上，客户端应用不再接受任何的用户名密码等 Cr">
-<meta name="keywords" content="CAS,Java">
+<meta name="keywords" content="Java,CAS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CAS简析">
 <meta property="og:url" content="http://qiuqiu.dev/2019/07/14/CAS简析/index.html">
@@ -127,6 +126,7 @@
   };
 </script>
 
+  
   <title>CAS简析 | qiuqiu的博客</title>
   
 
@@ -491,9 +491,9 @@
         
         <div class="post-tags">
           
-            <a href="/tags/CAS/" rel="tag"># CAS</a>
-          
             <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/CAS/" rel="tag"># CAS</a>
           
         </div>
       
@@ -574,95 +574,99 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
+
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="qiu_zs@126.com">
-            
-              <p class="site-author-name" itemprop="name">qiu_zs@126.com</p>
-              <div class="site-description motion-element" itemprop="description"></div>
-          </div>
+  
+    <img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="qiu_zs@126.com">
+  
+  <p class="site-author-name" itemprop="name">qiu_zs@126.com</p>
+  <div class="site-description motion-element" itemprop="description"></div>
+</div>
+
+
+  <nav class="site-state motion-element">
+    
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+
+    
+
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+
+
+
+
+
+
+
+  <div class="links-of-author motion-element">
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://github.com/qiuqiu0911" title="Github &rarr; https://github.com/qiuqiu0911" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+      
+        
+      
+        <a href="https://weibo.com/2301832825" title="Weibo &rarr; https://weibo.com/2301832825" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+    
+  </div>
+
+
+
+
+
+
 
           
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">7</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/qiuqiu0911" title="Github &rarr; https://github.com/qiuqiu0911" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                  
-                    
-                  
-                  <a href="https://weibo.com/2301832825" title="Weibo &rarr; https://weibo.com/2301832825" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-
           
         </div>
       </div>
@@ -781,6 +785,8 @@
 
 
 
+
+
   
   <script src="/lib/jquery/index.js?v=3.4.1"></script>
 
@@ -828,8 +834,21 @@
 
   
 
+  
 
   
+
+  
+
+  
+
+
+  
+
+
+  
+
+
 
 
   
@@ -1159,23 +1178,26 @@
 
   
 
-  
+
+
 
   
 
-  
 
-  
 
-  
+<script>
+// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
 
-  
+window.addEventListener("message", function(e) {
+  var data = e.data;
+  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
+    var featureID = data.split(':')[1];
+    var height = data.split(':')[2];
+    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
+  }
+}, false);
+</script>
 
-  
-
-  
-
-  
 
   
 
