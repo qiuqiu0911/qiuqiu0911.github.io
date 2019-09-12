@@ -7,3 +7,5 @@ tags: linux
 `route add -net 192.56.76.0 netmask 255.255.255.0 dev eth0`
 2. 在`/etc/sysconfig/static-routes`文件中添加格式为：
 `any net 192.56.76.0 netmask 255.255.255.0 dev eth0`
+3. 删除一条静态路由，命令为: 
+`route del -net 192.56.76.0 netmask 255.255.255.0 dev eth0`

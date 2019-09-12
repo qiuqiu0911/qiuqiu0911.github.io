@@ -22,6 +22,6 @@ tags: elasticsearch
  {% codeblock lang:yaml %}
  discovery.zen.minimum_master_nodes: 2
  discovery.zen.ping.multicast.enabled: false
- discovery.zen.ping.unicast.hosts: ["localhost:9001","localhost:9101","localhost:9701"]
+ discovery.zen.ping.unicast.hosts: ["localhost:9300","localhost:9301","localhost:9302"]
  {% endcodeblock %}
 `minimum_master_nodes`建议配置为`(具有master资格的节点的数量/2)+1`
