@@ -94,13 +94,18 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="qiuqiu的博客">
-<meta property="og:url" content="http://qiuqiu.dev/archives/2019/index.html">
+  <meta name="description" content="try-with-resources是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在try-catch语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。try-with-resources语句确保了每个资源在语句结束时关闭。所有实现了java.lang.AutoCloseable接口(其中，它包括实现了java.io.Closeable 的所有对象),">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="更优雅的关闭资源try-with-resources">
+<meta property="og:url" content="http://qiuqiu.dev/2019/09/12/更优雅的关闭资源try-with-resources/index.html">
 <meta property="og:site_name" content="qiuqiu的博客">
+<meta property="og:description" content="try-with-resources是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在try-catch语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。try-with-resources语句确保了每个资源在语句结束时关闭。所有实现了java.lang.AutoCloseable接口(其中，它包括实现了java.io.Closeable 的所有对象),">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-12T10:51:12.835Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="qiuqiu的博客">
+<meta name="twitter:title" content="更优雅的关闭资源try-with-resources">
+<meta name="twitter:description" content="try-with-resources是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在try-catch语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。try-with-resources语句确保了每个资源在语句结束时关闭。所有实现了java.lang.AutoCloseable接口(其中，它包括实现了java.io.Closeable 的所有对象),">
 
 
 
@@ -108,7 +113,7 @@
 
   
   
-  <link rel="canonical" href="http://qiuqiu.dev/archives/2019/">
+  <link rel="canonical" href="http://qiuqiu.dev/2019/09/12/更优雅的关闭资源try-with-resources/">
 
 
 
@@ -119,7 +124,7 @@
 </script>
 
   
-  <title>归档 | qiuqiu的博客</title>
+  <title>更优雅的关闭资源try-with-resources | qiuqiu的博客</title>
   
 
 
@@ -167,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,7 +262,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -323,381 +328,203 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://qiuqiu.dev/2019/09/12/更优雅的关闭资源try-with-resources/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qiu_zs@126.com">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiuqiu的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">更优雅的关闭资源try-with-resources
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+
           
-        
-        嗯..! 目前共计 9 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+          
 
-        
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+              
+                
+              
 
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/12/更优雅的关闭资源try-with-resources/" itemprop="url">
+              <time title="创建时间：2019-09-12 18:12:07 / 修改时间：18:51:12" itemprop="dateCreated datePublished" datetime="2019-09-12T18:12:07+08:00">2019-09-12</time>
+            </span>
+          
+
+          
             
-              <span itemprop="name">更优雅的关闭资源try-with-resources</span>
+
             
-          </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-12T18:12:07+08:00" content="2019-09-12">
-          09-12
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
+            
+            
+          
 
+          
+          
 
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/08/02/elasticsearch防止脑裂的配置/" itemprop="url">
-            
-              <span itemprop="name">elasticsearch防止脑裂的配置</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-02T11:19:49+08:00" content="2019-08-02">
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <p><code>try-with-resources</code>是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在<code>try-catch</code>语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。<code>try-with-resources</code>语句确保了每个资源在语句结束时关闭。所有实现了<code>java.lang.AutoCloseable</code>接口(其中，它包括实现了<code>java.io.Closeable</code> 的所有对象),可以使用作为资源。</p>
+<p>在没有使用<code>try-with-resources</code>语法糖时:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">test</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">    BufferedReader br = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(path));</span><br><span class="line">        <span class="keyword">return</span> br.readLine();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">null</span> != br) &#123;</span><br><span class="line">                br.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用后:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">test2</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(path));) &#123;</span><br><span class="line">        <span class="keyword">return</span> br.readLine();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>反编译发现: </p>
+<ul>
+<li>try 块没有发生异常时，自动调用 close 方法，如果发生异常，catch 块捕捉并处理异常。</li>
+<li>try 块发生异常，然后自动调用 close 方法，如果 close 也发生异常，catch 块只会捕捉 try 块抛出的异常，close 方法的异常会在catch 中被压制，但是你可以在catch块中，用 Throwable.getSuppressed 方法来获取到压制异常的数组。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">test</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        BufferedReader br = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(path));</span><br><span class="line">            String var3 = br.readLine();</span><br><span class="line">            <span class="keyword">return</span> var3;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException var13) &#123;</span><br><span class="line">            var13.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">null</span> != br) &#123;</span><br><span class="line">                    br.close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException var12) &#123;</span><br><span class="line">                var12.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">test2</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(path));</span><br><span class="line">            Throwable var3 = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">            String var4;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                var4 = br.readLine();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Throwable var14) &#123;</span><br><span class="line">                var3 = var14;</span><br><span class="line">                <span class="keyword">throw</span> var14;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (br != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (var3 != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        <span class="keyword">try</span> &#123;</span><br><span class="line">                            br.close();</span><br><span class="line">                        &#125; <span class="keyword">catch</span> (Throwable var13) &#123;</span><br><span class="line">                            var3.addSuppressed(var13);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        br.close();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> var4;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException var16) &#123;</span><br><span class="line">            var16.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/22/Java泛型/" itemprop="url">
-            
-              <span itemprop="name">Java泛型</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-22T21:46:20+08:00" content="2019-07-22">
-          07-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+<p>在处理必须关闭的资源时，使用<code>try-with-resources</code>语句替代<code>try-finally</code>语句。 生成的代码更简洁，更清晰，并且生成的异常更有用。 <code>try-with-resources</code>语句在编写必须关闭资源的代码时会更容易，也不会出错，而使用<code>try-finally</code>语句实际上是不可能的。</p>
+<p>参考: <a href="https://blog.csdn.net/weixin_40255793/article/details/80812961" target="_blank" rel="noopener">https://blog.csdn.net/weixin_40255793/article/details/80812961</a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/15/MyBatis参数绑定/" itemprop="url">
-            
-              <span itemprop="name">MyBatis参数绑定</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-15T20:53:01+08:00" content="2019-07-15">
-          07-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/15/PMP学习笔记/" itemprop="url">
-            
-              <span itemprop="name">PMP学习笔记</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-15T09:32:58+08:00" content="2019-07-15">
-          07-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/14/linux静态路由配置/" itemprop="url">
-            
-              <span itemprop="name">linux静态路由配置</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-14T23:42:02+08:00" content="2019-07-14">
-          07-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/14/hexo配置历史/" itemprop="url">
-            
-              <span itemprop="name">hexo配置历史</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-14T22:55:40+08:00" content="2019-07-14">
-          07-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/14/CAS简析/" itemprop="url">
-            
-              <span itemprop="name">CAS简析</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-14T22:45:10+08:00" content="2019-07-14">
-          07-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/07/14/将数组转换成ArrayList/" itemprop="url">
-            
-              <span itemprop="name">将数组转换成ArrayList</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-14T22:36:47+08:00" content="2019-07-14">
-          07-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/02/elasticsearch防止脑裂的配置/" rel="next" title="elasticsearch防止脑裂的配置">
+                <i class="fa fa-chevron-left"></i> elasticsearch防止脑裂的配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -944,6 +771,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.2.0"></script>
 
@@ -965,6 +796,8 @@
 
   
 
+
+  
 
 
   

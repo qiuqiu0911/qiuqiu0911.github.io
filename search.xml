@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[IDEA之条件断点]]></title>
-    <url>%2F2019%2F08%2F02%2FIDEA%E4%B9%8B%E6%9D%A1%E4%BB%B6%E6%96%AD%E7%82%B9%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[更优雅的关闭资源try-with-resources]]></title>
+    <url>%2F2019%2F09%2F12%2F%E6%9B%B4%E4%BC%98%E9%9B%85%E7%9A%84%E5%85%B3%E9%97%AD%E8%B5%84%E6%BA%90try-with-resources%2F</url>
+    <content type="text"><![CDATA[try-with-resources是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在try-catch语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。try-with-resources语句确保了每个资源在语句结束时关闭。所有实现了java.lang.AutoCloseable接口(其中，它包括实现了java.io.Closeable 的所有对象),可以使用作为资源。 在没有使用try-with-resources语法糖时: 123456789101112131415161718private String test(String path) &#123; BufferedReader br = null; try &#123; br = new BufferedReader(new FileReader(path)); return br.readLine(); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; finally &#123; try &#123; if (null != br) &#123; br.close(); &#125; &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; &#125; return null;&#125; 使用后: 12345678private String test2(String path) &#123; try (BufferedReader br = new BufferedReader(new FileReader(path));) &#123; return br.readLine(); &#125; catch (IOException e) &#123; e.printStackTrace(); &#125; return null;&#125; 反编译发现: try 块没有发生异常时，自动调用 close 方法，如果发生异常，catch 块捕捉并处理异常。 try 块发生异常，然后自动调用 close 方法，如果 close 也发生异常，catch 块只会捕捉 try 块抛出的异常，close 方法的异常会在catch 中被压制，但是你可以在catch块中，用 Throwable.getSuppressed 方法来获取到压制异常的数组。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051private String test(String path) &#123; BufferedReader br = null; try &#123; br = new BufferedReader(new FileReader(path)); String var3 = br.readLine(); return var3; &#125; catch (IOException var13) &#123; var13.printStackTrace(); &#125; finally &#123; try &#123; if (null != br) &#123; br.close(); &#125; &#125; catch (IOException var12) &#123; var12.printStackTrace(); &#125; &#125; return null; &#125; private String test2(String path) &#123; try &#123; BufferedReader br = new BufferedReader(new FileReader(path)); Throwable var3 = null; String var4; try &#123; var4 = br.readLine(); &#125; catch (Throwable var14) &#123; var3 = var14; throw var14; &#125; finally &#123; if (br != null) &#123; if (var3 != null) &#123; try &#123; br.close(); &#125; catch (Throwable var13) &#123; var3.addSuppressed(var13); &#125; &#125; else &#123; br.close(); &#125; &#125; &#125; return var4; &#125; catch (IOException var16) &#123; var16.printStackTrace(); return null; &#125; &#125; 在处理必须关闭的资源时，使用try-with-resources语句替代try-finally语句。 生成的代码更简洁，更清晰，并且生成的异常更有用。 try-with-resources语句在编写必须关闭资源的代码时会更容易，也不会出错，而使用try-finally语句实际上是不可能的。 参考: https://blog.csdn.net/weixin_40255793/article/details/80812961]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[elasticsearch防止脑裂的配置]]></title>
