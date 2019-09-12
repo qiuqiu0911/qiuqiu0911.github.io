@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="qiuqiu的博客">
 <meta property="og:description" content="什么是脑裂Elasticsearch不仅仅是 Lucene，并且也不仅仅只是一个全文搜索引擎。它可以被下面这样准确的形容：  一个分布式的实时文档存储，每个字段 可以被索引与搜索 一个分布式实时分析搜索引擎 能胜任上百个服务节点的扩展，并支持 PB 级别的结构化或者非结构化数据。  正常情况下，es集群中只有一个主节点，主节点负责管理整个集群，集群的所有节点都会选择同一个节点作为主节点所以无论访">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-04T11:21:08.041Z">
+<meta property="og:updated_time" content="2019-09-12T00:46:58.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticsearch防止脑裂的配置">
 <meta name="twitter:description" content="什么是脑裂Elasticsearch不仅仅是 Lucene，并且也不仅仅只是一个全文搜索引擎。它可以被下面这样准确的形容：  一个分布式的实时文档存储，每个字段 可以被索引与搜索 一个分布式实时分析搜索引擎 能胜任上百个服务节点的扩展，并支持 PB 级别的结构化或者非结构化数据。  正常情况下，es集群中只有一个主节点，主节点负责管理整个集群，集群的所有节点都会选择同一个节点作为主节点所以无论访">
@@ -406,7 +406,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-04 19:21:08" itemprop="dateModified" datetime="2019-09-04T19:21:08+08:00">2019-09-04</time>
+                <time title="修改时间：2019-09-12 08:46:58" itemprop="dateModified" datetime="2019-09-12T08:46:58+08:00">2019-09-12</time>
               </span>
             
           
@@ -465,7 +465,7 @@
 <li><strong>多播</strong>:也叫组播，指一个节点可以向多台机器发送请求。ES 不建议生产环境使用这种方式，对于一个大规模的集群，组播会产生大量不必要的通信。</li>
 <li><strong>单播</strong>:一个节点加入一个现有集群，或者组建一个新的集群时，发送请求到一台主机。当一个节点联系到单播列表中的成员时，它就会得到整个集群所有节点的状态，然后它会联系 master 节点，并加入集群。</li>
 </ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">discovery.zen.minimum_master_nodes:</span> <span class="number">2</span></span><br><span class="line"><span class="string">discovery.zen.ping.multicast.enabled:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">discovery.zen.ping.unicast.hosts:</span> <span class="string">["localhost:9001","localhost:9101","localhost:9701"]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">discovery.zen.minimum_master_nodes:</span> <span class="number">2</span></span><br><span class="line"><span class="string">discovery.zen.ping.multicast.enabled:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">discovery.zen.ping.unicast.hosts:</span> <span class="string">["localhost:9300","localhost:9301","localhost:9302"]</span></span><br></pre></td></tr></table></figure>
 <p><code>minimum_master_nodes</code>建议配置为<code>(具有master资格的节点的数量/2)+1</code></p>
 </li>
 </ol>
@@ -596,7 +596,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -629,9 +629,7 @@
         
           
         
-          
-        
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
