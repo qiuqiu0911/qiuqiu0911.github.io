@@ -42,7 +42,7 @@ tags: Java
 - try 块发生异常，然后自动调用 close 方法，如果 close 也发生异常，catch 块只会捕捉 try 块抛出的异常，close 方法的异常会在catch 中被压制，但是你可以在catch块中，用 Throwable.getSuppressed 方法来获取到压制异常的数组。
 
 {% codeblock lang:java %}
-private String test(String path) {
+    private String test(String path) {
         BufferedReader br = null;
 
         try {
