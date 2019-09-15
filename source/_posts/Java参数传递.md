@@ -5,7 +5,7 @@ tags: Java
 ---
 无论是对于基本数据类型，还是引用变量，Java中的参数传递都是**值复制**的传递过程。对于引用变量,复制指向**对象的首地址**,双方都可以通过自己的引用变量修改指向对象的相关属性。
 而`String`是`immutable`对象,即不可变类。每次修改`String`对象的值，其实都是创建了一个新的`String`对象,再赋值为修改后的值。这也就是`String`对象和其他引用类型表现不同的原因。
-{%codeblock  lang:java%}
+```java
 /**
  * @author qiuqiu
  */
@@ -49,13 +49,13 @@ public class Demo {
     }
 
 }
-{%endcodeblock%}
+```
 程序输出为:
-{% codeblock %}
+```java
 222
 888
 old string
 old stringBuilder.method.first-method.second-
-{% endcodeblock %}
+```
 
 > 《码出高效 Java开发手册》
