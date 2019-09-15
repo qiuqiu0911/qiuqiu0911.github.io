@@ -1,7 +1,9 @@
 ---
 title: elasticsearch防止脑裂的配置
 date: 2019-08-02 11:19:49
-tags: elasticsearch
+tags: 
+  - elasticsearch
+  - 运维
 ---
 1. ### 什么是脑裂
   Elasticsearch不仅仅是 Lucene，并且也不仅仅只是一个全文搜索引擎。它可以被下面这样准确的形容：

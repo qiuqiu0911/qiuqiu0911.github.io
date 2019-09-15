@@ -1,7 +1,9 @@
 ---
 title: 更优雅的关闭资源try-with-resources
 date: 2019-09-12 18:12:07
-tags: Java
+tags: 
+  - Java
+  - 编程规范
 ---
 `try-with-resources`是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在`try-catch`语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。`try-with-resources`语句确保了每个资源在语句结束时关闭。所有实现了`java.lang.AutoCloseable`接口的对象(其中，它包括实现了`java.io.Closeable` 的所有对象),可以使用作为资源。
 

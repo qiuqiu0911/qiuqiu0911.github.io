@@ -1,4 +1,6 @@
 ---
 title: Java8 Stream
-tags:
+tags: 
+ - Java
+ - Java8
 ---

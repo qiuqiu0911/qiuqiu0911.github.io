@@ -20,6 +20,7 @@ tags: hexo
     {% blockquote %}
     使用这一方式，你的全部配置都将置于 hexo 主要配置文件中（hexo/_config.yml），并且不需要修改 next/_config.yml，或者创建什么其他的文件。但是所有的主题选项必须放置在 theme_config 后，并全部增加两个空格的缩进。
     {% endblockquote %}
+    <!--more-->
 2. ### 开启搜索
     1. 安装`npm install hexo-generator-searchdb --save`
     2. 修改站点配置`_config.yml`
@@ -59,3 +60,6 @@ back2top:
     # Scroll percent label in b2t button.
     scrollpercent: true
 ```
+5. ### 支持阅读全文
+  当文章过长时，在要截断的地方添加`<!--more-->`,即可生成"阅读全文"按钮。
+  主题自带的阅读全文，会根据文章字符数固定划分，这样容易导致原文排版出现问题，故不推荐使用

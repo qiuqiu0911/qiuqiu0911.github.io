@@ -1,7 +1,9 @@
 ---
 title: 将数组转换成ArrayList
 date: 2019-07-14 22:36:47
-tags: Java
+tags: 
+  - Java
+  - 编程规范
 ---
 1. ### 使用工具类转换时的坑
 使用工具类`Arrays`将数组转换成`List`时,转换后的List不能直接调用`add()`方法增加元素。
@@ -16,6 +18,7 @@ tags: Java
 
     此处会报错 `java.lang.UnsupportedOperationException`
 
+<!--more-->
 2. ### 原因分析
 工具类`Arrays`的`asList()`方法,返回的是其一个内部类ArrayList, 该类没有重写`add()`方法
 {% codeblock lang:java %}

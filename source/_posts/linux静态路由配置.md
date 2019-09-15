@@ -1,7 +1,9 @@
 ---
 title: linux静态路由配置
 date: 2019-07-14 23:42:02
-tags: linux
+tags: 
+ - 运维
+ - linux
 ---
 1. 如果要添加一条静态路由，命令为: 
 `route add -net 192.56.76.0 netmask 255.255.255.0 dev eth0`
