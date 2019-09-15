@@ -94,18 +94,18 @@
   };
 </script>
 
-  <meta name="description" content="try-with-resources是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在try-catch语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。try-with-resources语句确保了每个资源在语句结束时关闭。所有实现了java.lang.AutoCloseable接口(其中，它包括实现了java.io.Closeable 的所有对象),">
+  <meta name="description" content="try-with-resources是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在try-catch语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。try-with-resources语句确保了每个资源在语句结束时关闭。所有实现了java.lang.AutoCloseable接口的对象(其中，它包括实现了java.io.Closeable 的所有对">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="更优雅的关闭资源try-with-resources">
 <meta property="og:url" content="http://qiuqiu.dev/2019/09/12/更优雅的关闭资源try-with-resources/index.html">
 <meta property="og:site_name" content="qiuqiu的博客">
-<meta property="og:description" content="try-with-resources是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在try-catch语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。try-with-resources语句确保了每个资源在语句结束时关闭。所有实现了java.lang.AutoCloseable接口(其中，它包括实现了java.io.Closeable 的所有对象),">
+<meta property="og:description" content="try-with-resources是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在try-catch语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。try-with-resources语句确保了每个资源在语句结束时关闭。所有实现了java.lang.AutoCloseable接口的对象(其中，它包括实现了java.io.Closeable 的所有对">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-12T11:02:00.591Z">
+<meta property="og:updated_time" content="2019-09-15T04:04:51.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="更优雅的关闭资源try-with-resources">
-<meta name="twitter:description" content="try-with-resources是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在try-catch语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。try-with-resources语句确保了每个资源在语句结束时关闭。所有实现了java.lang.AutoCloseable接口(其中，它包括实现了java.io.Closeable 的所有对象),">
+<meta name="twitter:description" content="try-with-resources是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在try-catch语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。try-with-resources语句确保了每个资源在语句结束时关闭。所有实现了java.lang.AutoCloseable接口的对象(其中，它包括实现了java.io.Closeable 的所有对">
 
 
 
@@ -391,13 +391,23 @@
                 
               
 
-              <time title="创建时间：2019-09-12 18:12:07 / 修改时间：19:02:00" itemprop="dateCreated datePublished" datetime="2019-09-12T18:12:07+08:00">2019-09-12</time>
+              <time title="创建时间：2019-09-12 18:12:07" itemprop="dateCreated datePublished" datetime="2019-09-12T18:12:07+08:00">2019-09-12</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-15 12:04:51" itemprop="dateModified" datetime="2019-09-15T12:04:51+08:00">2019-09-15</time>
+              </span>
             
           
 
@@ -435,11 +445,13 @@
       
 
       
-        <p><code>try-with-resources</code>是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在<code>try-catch</code>语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。<code>try-with-resources</code>语句确保了每个资源在语句结束时关闭。所有实现了<code>java.lang.AutoCloseable</code>接口(其中，它包括实现了<code>java.io.Closeable</code> 的所有对象),可以使用作为资源。</p>
+        <p><code>try-with-resources</code>是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在<code>try-catch</code>语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。<code>try-with-resources</code>语句确保了每个资源在语句结束时关闭。所有实现了<code>java.lang.AutoCloseable</code>接口的对象(其中，它包括实现了<code>java.io.Closeable</code> 的所有对象),可以使用作为资源。</p>
 <p>在没有使用<code>try-with-resources</code>语法糖时:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">test</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">    BufferedReader br = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(path));</span><br><span class="line">        <span class="keyword">return</span> br.readLine();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">null</span> != br) &#123;</span><br><span class="line">                br.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>使用后:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">test2</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(path));) &#123;</span><br><span class="line">        <span class="keyword">return</span> br.readLine();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>反编译发现: </p>
 <ul>
 <li>try 块没有发生异常时，自动调用 close 方法，如果发生异常，catch 块捕捉并处理异常。</li>
@@ -502,6 +514,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/09/14/Java参数传递/" rel="prev" title="Java参数传递">
+                Java参数传递 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -563,7 +579,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

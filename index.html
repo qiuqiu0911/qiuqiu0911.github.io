@@ -344,7 +344,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://qiuqiu.dev/2019/09/12/更优雅的关闭资源try-with-resources/">
+    <link itemprop="mainEntityOfPage" href="http://qiuqiu.dev/2019/09/14/Java8-Steam/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="qiu_zs@126.com">
@@ -364,7 +364,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/09/12/更优雅的关闭资源try-with-resources/" class="post-title-link" itemprop="url">更优雅的关闭资源try-with-resources</a>
+                <a href="/2019/09/14/Java8-Steam/" class="post-title-link" itemprop="url">Java8 Steam</a>
               
             
           </h1>
@@ -389,7 +389,7 @@
                 
               
 
-              <time title="创建时间：2019-09-12 18:12:07 / 修改时间：19:02:00" itemprop="dateCreated datePublished" datetime="2019-09-12T18:12:07+08:00">2019-09-12</time>
+              <time title="创建时间：2019-09-14 19:49:55 / 修改时间：20:25:25" itemprop="dateCreated datePublished" datetime="2019-09-14T19:49:55+08:00">2019-09-14</time>
             </span>
           
 
@@ -435,11 +435,340 @@
       
         
           
-            <p><code>try-with-resources</code>是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在<code>try-catch</code>语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。<code>try-with-resources</code>语句确保了每个资源在语句结束时关闭。所有实现了<code>java.lang.AutoCloseable</code>接口(其中，它包括实现了<code>java.io.Closeable</code> 的所有对象),可以使用作为资源。</p>
+            
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://qiuqiu.dev/2019/09/14/Java参数传递/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qiu_zs@126.com">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiuqiu的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/14/Java参数传递/" class="post-title-link" itemprop="url">Java参数传递</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-14 16:00:32" itemprop="dateCreated datePublished" datetime="2019-09-14T16:00:32+08:00">2019-09-14</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-15 11:20:01" itemprop="dateModified" datetime="2019-09-15T11:20:01+08:00">2019-09-15</time>
+              </span>
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>无论是对于基本数据类型，还是引用变量，Java中的参数传递都是<strong>值复制</strong>的传递过程。对于引用变量,复制指向<strong>对象的首地址</strong>,双方都可以通过自己的引用变量修改指向对象的相关属性。<br>而<code>String</code>是<code>immutable</code>对象,即不可变类。每次修改<code>String</code>对象的值，其实都是创建了一个新的<code>String</code>对象,再赋值为修改后的值。这也就是<code>String</code>对象和其他引用类型表现不同的原因。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> qiuqiu</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> intStatic = <span class="number">222</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String stringStatic = <span class="string">"old string"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> StringBuilder stringBuilderStatic = <span class="keyword">new</span> StringBuilder(<span class="string">"old stringBuilder"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(<span class="keyword">int</span> intStatic)</span></span>&#123;</span><br><span class="line">        intStatic = <span class="number">777</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        intStatic = <span class="number">888</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(String stringStatic)</span></span>&#123;</span><br><span class="line">        stringStatic = <span class="string">"new string"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(StringBuilder stringBuilderStatic1, StringBuilder stringBuilderStatic2)</span></span>&#123;</span><br><span class="line">        stringBuilderStatic1.append(<span class="string">".method.first-"</span>);</span><br><span class="line">        stringBuilderStatic2.append(<span class="string">"method.second-"</span>);</span><br><span class="line"></span><br><span class="line">        stringBuilderStatic1 = <span class="keyword">new</span> StringBuilder(<span class="string">"new stringBuilder"</span>);</span><br><span class="line">        stringBuilderStatic1.append(<span class="string">"new method's append"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        method(intStatic);</span><br><span class="line">        method(stringStatic);</span><br><span class="line">        method(stringBuilderStatic,stringBuilderStatic);</span><br><span class="line"></span><br><span class="line">        System.out.println(intStatic);</span><br><span class="line">        method();</span><br><span class="line">        System.out.println(intStatic);</span><br><span class="line"></span><br><span class="line">        System.out.println(stringStatic);</span><br><span class="line">        System.out.println(stringBuilderStatic);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>程序输出为:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">222</span></span><br><span class="line"><span class="number">888</span></span><br><span class="line">old string</span><br><span class="line">old stringBuilder.method.first-method.second-</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>《码出高效 Java开发手册》</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://qiuqiu.dev/2019/09/12/更优雅的关闭资源try-with-resources/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qiu_zs@126.com">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiuqiu的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/12/更优雅的关闭资源try-with-resources/" class="post-title-link" itemprop="url">更优雅的关闭资源try-with-resources</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-12 18:12:07" itemprop="dateCreated datePublished" datetime="2019-09-12T18:12:07+08:00">2019-09-12</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-15 12:04:51" itemprop="dateModified" datetime="2019-09-15T12:04:51+08:00">2019-09-15</time>
+              </span>
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>try-with-resources</code>是 JDK 7 中一个新的异常处理机制，它能够很容易地关闭在<code>try-catch</code>语句块中使用的资源。所谓的资源(resource)是指在程序完成后，必须关闭的对象。<code>try-with-resources</code>语句确保了每个资源在语句结束时关闭。所有实现了<code>java.lang.AutoCloseable</code>接口的对象(其中，它包括实现了<code>java.io.Closeable</code> 的所有对象),可以使用作为资源。</p>
 <p>在没有使用<code>try-with-resources</code>语法糖时:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">test</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">    BufferedReader br = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(path));</span><br><span class="line">        <span class="keyword">return</span> br.readLine();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">null</span> != br) &#123;</span><br><span class="line">                br.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>使用后:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">test2</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(path));) &#123;</span><br><span class="line">        <span class="keyword">return</span> br.readLine();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>反编译发现: </p>
 <ul>
 <li>try 块没有发生异常时，自动调用 close 方法，如果发生异常，catch 块捕捉并处理异常。</li>
@@ -750,7 +1079,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-12 08:49:26" itemprop="dateModified" datetime="2019-09-12T08:49:26+08:00">2019-09-12</time>
+                <time title="修改时间：2019-09-15 12:06:03" itemprop="dateModified" datetime="2019-09-15T12:06:03+08:00">2019-09-15</time>
               </span>
             
           
@@ -791,12 +1120,37 @@
       
         
           
-            <p>泛型只在编译阶段有效，是为了解决不确定具体对象类型的问题。<br>约定俗成的符号: </p>
-<ul>
+            <ol>
+<li><h4 id="泛型只在编译阶段有效"><a href="#泛型只在编译阶段有效" class="headerlink" title="泛型只在编译阶段有效"></a>泛型只在编译阶段有效</h4><p> 泛型只在编译阶段有效，是为了解决不确定具体对象类型的问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringArrayList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">List&lt;Integer&gt; integerArrayList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">System.out.println(stringArrayList.getClass().equals(integerArrayList.getClass()));</span><br><span class="line"></span><br><span class="line">Generic&lt;String&gt; stringGeneric = <span class="keyword">new</span> Generic&lt;&gt;(<span class="string">"test"</span>);</span><br><span class="line">Generic&lt;Integer&gt; integerGeneric = <span class="keyword">new</span> Generic&lt;&gt;(<span class="number">123</span>);</span><br><span class="line">System.out.println(stringGeneric.getClass().equals(integerGeneric.getClass()));</span><br></pre></td></tr></table></figure>
+
+<p> 输出为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+
+<p> 说明Java中的泛型，只在编译阶段有效。在编译过程中，正确检验泛型结果后，会将泛型的相关信息擦除，并且在对象进入和离开方法的边界处添加类型检查和类型转换的方法。也就是说，泛型信息不会进入到运行时阶段。</p>
+</li>
+<li><h4 id="约定俗成的符号"><a href="#约定俗成的符号" class="headerlink" title="约定俗成的符号"></a>约定俗成的符号</h4><ul>
 <li><code>E</code>代表<code>Element</code>，用于集合中的元素</li>
 <li><code>T</code>代表 <code>the Type of object</code>，表示某个类</li>
 <li><code>K</code>代表<code>Key</code>，<code>V</code>代表<code>Value</code>，用于键值对元素。</li>
 </ul>
+</li>
+<li><h4 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h4><blockquote>
+<p>泛型类型用于类的定义中，被称为泛型类。通过泛型可以完成对一组类的操作对外开放相同的接口。最典型的就是各种容器类，如：List、Set、Map。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类名称 &lt;泛型标识：可以随便写任意标识号，标识指定的泛型的类型&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">private</span> 泛型标识 <span class="comment">/*（成员变量类型）*/</span> <span class="keyword">var</span>; </span><br><span class="line">  .....</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 一个简单的泛型类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Generic</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T key;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Generic</span><span class="params">(T key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 对比非泛型类,使用<code>Object</code>作为参数类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NoGeneric</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object key;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NoGeneric</span><span class="params">(Object key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 泛型类的应用避免了强制转换的风险，提升了安全性和代码的可读性。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Generic&lt;String&gt; stringGeneric = <span class="keyword">new</span> Generic&lt;&gt;(<span class="string">"test"</span>);</span><br><span class="line">Generic&lt;Integer&gt; integerGeneric = <span class="keyword">new</span> Generic&lt;&gt;(<span class="number">123</span>);</span><br><span class="line"><span class="comment">// 不需要进行强制类型转换</span></span><br><span class="line">String key = stringGeneric.getKey();</span><br><span class="line">Integer key1 = integerGeneric.getKey();</span><br><span class="line"></span><br><span class="line">NoGeneric stringNoGeneric = <span class="keyword">new</span> NoGeneric(<span class="string">"test"</span>);</span><br><span class="line">NoGeneric integerNoGeneric = <span class="keyword">new</span> NoGeneric(<span class="number">123</span>);</span><br><span class="line">String key2 = (String) stringNoGeneric.getKey();</span><br><span class="line">Integer key3 = (Integer) integerNoGeneric.getKey();</span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4></li>
+</ol>
 
           
         
@@ -1699,180 +2053,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://qiuqiu.dev/2019/07/14/将数组转换成ArrayList/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qiu_zs@126.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qiuqiu的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/14/将数组转换成ArrayList/" class="post-title-link" itemprop="url">将数组转换成ArrayList</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-14 22:36:47 / 修改时间：22:43:08" itemprop="dateCreated datePublished" datetime="2019-07-14T22:36:47+08:00">2019-07-14</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><h3 id="使用工具类转换时的坑"><a href="#使用工具类转换时的坑" class="headerlink" title="使用工具类转换时的坑"></a>使用工具类转换时的坑</h3><p>使用工具类<code>Arrays</code>将数组转换成<code>List</code>时,转换后的List不能直接调用<code>add()</code>方法增加元素。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testArrayToList</span><span class="params">()</span></span>&#123;</span><br><span class="line">    String[] tests  = &#123;<span class="string">"test1"</span>,<span class="string">"test2"</span>,<span class="string">"test3"</span>&#125;;</span><br><span class="line">    List&lt;String&gt; strings = Arrays.asList(tests);</span><br><span class="line">    strings.add(<span class="string">"1234"</span>);</span><br><span class="line">    System.out.println(JSON.toJSONString(strings));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 此处会报错 <code>java.lang.UnsupportedOperationException</code></p>
-</li>
-<li><h3 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h3><p>工具类<code>Arrays</code>的<code>asList()</code>方法,返回的是其一个内部类ArrayList, 该类没有重写<code>add()</code>方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Arrays.asList()方法</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a fixed-size list backed by the specified array.  (Changes to</span></span><br><span class="line"><span class="comment"> * the returned list "write through" to the array.)  This method acts</span></span><br><span class="line"><span class="comment"> * as bridge between array-based and collection-based APIs, in</span></span><br><span class="line"><span class="comment"> * combination with &#123;<span class="doctag">@link</span> Collection#toArray&#125;.  The returned list is</span></span><br><span class="line"><span class="comment"> * serializable and implements &#123;<span class="doctag">@link</span> RandomAccess&#125;.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This method also provides a convenient way to create a fixed-size</span></span><br><span class="line"><span class="comment"> * list initialized to contain several elements:</span></span><br><span class="line"><span class="comment"> * &lt;pre&gt;</span></span><br><span class="line"><span class="comment"> *     List&amp;lt;String&amp;gt; stooges = Arrays.asList("Larry", "Moe", "Curly");</span></span><br><span class="line"><span class="comment"> * &lt;/pre&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;T&gt; the class of the objects in the array</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> a the array by which the list will be backed</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a list view of the specified array</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SafeVarargs</span></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"varargs"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">asList</span><span class="params">(T... a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 返回的内部类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@serial</span> include</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">RandomAccess</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
-
-<p> 没有重写的抽象类方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This implementation always throws an</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> UnsupportedOperationException&#125;.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> UnsupportedOperationException &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> ClassCastException            &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException          &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IllegalArgumentException      &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IndexOutOfBoundsException     &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This implementation always throws an</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> UnsupportedOperationException&#125;.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> UnsupportedOperationException &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IndexOutOfBoundsException     &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><h3 id="参考《阿里巴巴JAVA编程规范》"><a href="#参考《阿里巴巴JAVA编程规范》" class="headerlink" title="参考《阿里巴巴JAVA编程规范》"></a>参考《阿里巴巴JAVA编程规范》</h3><blockquote><ol start="5">
-<li>【强制】使用工具类 Arrays.asList()把数组转换成集合时，不能使用其修改集合相关的方 法，它的 add/remove/clear 方法会抛出 UnsupportedOperationException 异常。 说明:asList 的返回对象是一个 Arrays 内部类，并没有实现集合的修改方法。Arrays.asList 体现的是适配器模式，只是转换接口，后台的数据仍是数组。<pre><code>String[] str = new String[] { &quot;you&quot;, &quot;wu&quot; };</code></pre>List list = Arrays.asList(str); 第一种情况:list.add(“yangguanbao”); 运行时异常。 第二种情况:str[0] = “gujin”; 那么list.get(0)也会随之修改。</li>
-</ol>
-</blockquote>
-</li>
-<li><h3 id="解决的办法"><a href="#解决的办法" class="headerlink" title="解决的办法"></a>解决的办法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List list = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>))</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1915,7 +2102,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

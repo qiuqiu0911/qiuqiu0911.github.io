@@ -94,13 +94,18 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="qiuqiu的博客">
-<meta property="og:url" content="http://qiuqiu.dev/archives/2019/09/index.html">
+  <meta name="description" content="无论是对于基本数据类型，还是引用变量，Java中的参数传递都是值复制的传递过程。对于引用变量,复制指向对象的首地址,双方都可以通过自己的引用变量修改指向对象的相关属性。而String是immutable对象,即不可变类。每次修改String对象的值，其实都是创建了一个新的String对象,再赋值为修改后的值。这也就是String对象和其他引用类型表现不同的原因。 12345678910111213">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java参数传递">
+<meta property="og:url" content="http://qiuqiu.dev/2019/09/14/Java参数传递/index.html">
 <meta property="og:site_name" content="qiuqiu的博客">
+<meta property="og:description" content="无论是对于基本数据类型，还是引用变量，Java中的参数传递都是值复制的传递过程。对于引用变量,复制指向对象的首地址,双方都可以通过自己的引用变量修改指向对象的相关属性。而String是immutable对象,即不可变类。每次修改String对象的值，其实都是创建了一个新的String对象,再赋值为修改后的值。这也就是String对象和其他引用类型表现不同的原因。 12345678910111213">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-09-15T03:20:01.549Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="qiuqiu的博客">
+<meta name="twitter:title" content="Java参数传递">
+<meta name="twitter:description" content="无论是对于基本数据类型，还是引用变量，Java中的参数传递都是值复制的传递过程。对于引用变量,复制指向对象的首地址,双方都可以通过自己的引用变量修改指向对象的相关属性。而String是immutable对象,即不可变类。每次修改String对象的值，其实都是创建了一个新的String对象,再赋值为修改后的值。这也就是String对象和其他引用类型表现不同的原因。 12345678910111213">
 
 
 
@@ -108,7 +113,7 @@
 
   
   
-  <link rel="canonical" href="http://qiuqiu.dev/archives/2019/09/">
+  <link rel="canonical" href="http://qiuqiu.dev/2019/09/14/Java参数传递/">
 
 
 
@@ -119,7 +124,7 @@
 </script>
 
   
-  <title>归档 | qiuqiu的博客</title>
+  <title>Java参数传递 | qiuqiu的博客</title>
   
 
 
@@ -167,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,7 +262,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -323,171 +328,212 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://qiuqiu.dev/2019/09/14/Java参数传递/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qiu_zs@126.com">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiuqiu的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Java参数传递
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+
           
-        
-        嗯..! 目前共计 11 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
+          
 
-        
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+              
+                
+              
 
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/14/Java8-Steam/" itemprop="url">
+              <time title="创建时间：2019-09-14 16:00:32" itemprop="dateCreated datePublished" datetime="2019-09-14T16:00:32+08:00">2019-09-14</time>
+            </span>
+          
+
+          
             
-              <span itemprop="name">Java8 Steam</span>
+
             
-          </a>
-        
-      </h2>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-15 11:20:01" itemprop="dateModified" datetime="2019-09-15T11:20:01+08:00">2019-09-15</time>
+              </span>
+            
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-14T19:49:55+08:00" content="2019-09-14">
-          09-14
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
+            
+            
+          
 
+          
+          
 
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/14/Java参数传递/" itemprop="url">
-            
-              <span itemprop="name">Java参数传递</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-14T16:00:32+08:00" content="2019-09-14">
-          09-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
+      
+        <p>无论是对于基本数据类型，还是引用变量，Java中的参数传递都是<strong>值复制</strong>的传递过程。对于引用变量,复制指向<strong>对象的首地址</strong>,双方都可以通过自己的引用变量修改指向对象的相关属性。<br>而<code>String</code>是<code>immutable</code>对象,即不可变类。每次修改<code>String</code>对象的值，其实都是创建了一个新的<code>String</code>对象,再赋值为修改后的值。这也就是<code>String</code>对象和其他引用类型表现不同的原因。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> qiuqiu</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> intStatic = <span class="number">222</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String stringStatic = <span class="string">"old string"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> StringBuilder stringBuilderStatic = <span class="keyword">new</span> StringBuilder(<span class="string">"old stringBuilder"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(<span class="keyword">int</span> intStatic)</span></span>&#123;</span><br><span class="line">        intStatic = <span class="number">777</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">method</span><span class="params">()</span></span>&#123;</span><br><span class="line">        intStatic = <span class="number">888</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(String stringStatic)</span></span>&#123;</span><br><span class="line">        stringStatic = <span class="string">"new string"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">(StringBuilder stringBuilderStatic1, StringBuilder stringBuilderStatic2)</span></span>&#123;</span><br><span class="line">        stringBuilderStatic1.append(<span class="string">".method.first-"</span>);</span><br><span class="line">        stringBuilderStatic2.append(<span class="string">"method.second-"</span>);</span><br><span class="line"></span><br><span class="line">        stringBuilderStatic1 = <span class="keyword">new</span> StringBuilder(<span class="string">"new stringBuilder"</span>);</span><br><span class="line">        stringBuilderStatic1.append(<span class="string">"new method's append"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        method(intStatic);</span><br><span class="line">        method(stringStatic);</span><br><span class="line">        method(stringBuilderStatic,stringBuilderStatic);</span><br><span class="line"></span><br><span class="line">        System.out.println(intStatic);</span><br><span class="line">        method();</span><br><span class="line">        System.out.println(intStatic);</span><br><span class="line"></span><br><span class="line">        System.out.println(stringStatic);</span><br><span class="line">        System.out.println(stringBuilderStatic);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        
-        
+<p>程序输出为:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">222</span></span><br><span class="line"><span class="number">888</span></span><br><span class="line">old string</span><br><span class="line">old stringBuilder.method.first-method.second-</span><br></pre></td></tr></table></figure>
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/09/12/更优雅的关闭资源try-with-resources/" itemprop="url">
-            
-              <span itemprop="name">更优雅的关闭资源try-with-resources</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-09-12T18:12:07+08:00" content="2019-09-12">
-          09-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+<blockquote>
+<p>《码出高效 Java开发手册》</p>
+</blockquote>
 
       
-
     </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/12/更优雅的关闭资源try-with-resources/" rel="next" title="更优雅的关闭资源try-with-resources">
+                <i class="fa fa-chevron-left"></i> 更优雅的关闭资源try-with-resources
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/14/Java8-Steam/" rel="prev" title="Java8 Steam">
+                Java8 Steam <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -734,6 +780,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.2.0"></script>
 
@@ -755,6 +805,8 @@
 
   
 
+
+  
 
 
   
