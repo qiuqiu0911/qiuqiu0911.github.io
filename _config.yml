@@ -130,3 +130,14 @@ theme_config:
     rounded: true
     # If true, the avatar would be rotated with the cursor.
     rotated: false
+  back2top:
+    enable: true
+    # Back to top in sidebar.
+    sidebar: false
+    # Scroll percent label in b2t button.
+    scrollpercent: true
+  # Automatically Excerpt (Not recommend).
+  # Use <!-- more --> in the post to control excerpt accurately.
+  auto_excerpt:
+    enable: false
+    length: 150
