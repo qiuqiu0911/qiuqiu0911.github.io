@@ -344,6 +344,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://qiuqiu.dev/2019/12/06/BeanUtils拷贝属性报错IllegalArgumentException/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="qiu_zs@126.com">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="qiuqiu的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/06/BeanUtils拷贝属性报错IllegalArgumentException/" class="post-title-link" itemprop="url">BeanUtils拷贝属性报错IllegalArgumentException</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-06 10:58:39 / 修改时间：11:14:27" itemprop="dateCreated datePublished" datetime="2019-12-06T10:58:39+08:00">2019-12-06</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><code>org.springframework.beans.BeanUtils</code>提供了一个拷贝类属性的方法<code>copyProperties()</code>,在两个对象具有相同属性时，可以方便的将一个对象的属性值复制给另一个对象的对应属性。</p>
+<p>如 <code>Source</code>与<code>Target</code>均含有一个名为<code>id</code>的属性，通过<code>BeanUtils.copyProperties(source, target);</code>可以将source的id属性复制给target。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Source</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    Integer id;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCopyProperties</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Source source = <span class="keyword">new</span> Source();</span><br><span class="line">    Target target = <span class="keyword">new</span> Target();</span><br><span class="line"><span class="comment">//  source.setId(123);</span></span><br><span class="line">    BeanUtils.copyProperties(source, target);</span><br><span class="line">    System.out.println(JSONObject.toJSON(target));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是，如果<code>source</code>的id属性为<code>null</code>, <code>BeanUtils.copyProperties(source, target);</code>方法会抛出异常<code>IllegalArgumentException</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.beans.FatalBeanException: Could not copy property <span class="string">'id'</span> from source to target; nested exception is java.lang.IllegalArgumentException</span><br><span class="line">	at org.springframework.beans.BeanUtils.copyProperties(BeanUtils.java:<span class="number">690</span>)</span><br><span class="line">    at org.springframework.beans.BeanUtils.copyProperties(BeanUtils.java:<span class="number">602</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这个是目标的bean实体没有确定。如果javaBean中但属性含有基本类型，而model模型的对应的属性值为null，就会出现这个异常。<br><strong>解决办法</strong>： javaBean中的属性值不要使用基本类型。</p>
+<p>参考《阿里巴巴Java开发手册》</p>
+<blockquote>
+<ol start="8">
+<li>关于基本数据类型与包装数据类型的使用标准如下:</li>
+</ol>
+<p><strong>1) 【强制】所有的POJO类属性必须使用包装数据类型。</strong><br>2) 【强制】RPC方法的返回值和参数必须使用包装数据类型。<br>3) 【推荐】所有的局部变量使用基本数据类型。<br>说明:POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何<br>NPE 问题，或者入库检查，都由使用者来保证。<br>正例:数据库的查询结果可能是 null，因为自动拆箱，用基本数据类型接收有 NPE 风险。 反例:比如显示成交总额涨跌情况，即正负 x%，x 为基本数据类型，调用的 RPC 服务，调用<br>不成功时，返回的是默认值，页面显示为 0%，这是不合理的，应该显示成中划线。所以包装 数据类型的 null 值，能够表示额外的信息，如:远程调用失败，异常退出。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://qiuqiu.dev/2019/09/14/Java参数传递/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -404,7 +568,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-15 12:43:14" itemprop="dateModified" datetime="2019-09-15T12:43:14+08:00">2019-09-15</time>
+                <time title="修改时间：2019-10-27 18:32:41" itemprop="dateModified" datetime="2019-10-27T18:32:41+08:00">2019-10-27</time>
               </span>
             
           
@@ -572,7 +736,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-15 12:04:51" itemprop="dateModified" datetime="2019-09-15T12:04:51+08:00">2019-09-15</time>
+                <time title="修改时间：2019-09-15 18:44:02" itemprop="dateModified" datetime="2019-09-15T18:44:02+08:00">2019-09-15</time>
               </span>
             
           
@@ -747,7 +911,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-12 18:05:52" itemprop="dateModified" datetime="2019-09-12T18:05:52+08:00">2019-09-12</time>
+                <time title="修改时间：2019-10-27 18:35:11" itemprop="dateModified" datetime="2019-10-27T18:35:11+08:00">2019-10-27</time>
               </span>
             
           
@@ -930,7 +1094,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-15 12:58:35" itemprop="dateModified" datetime="2019-09-15T12:58:35+08:00">2019-09-15</time>
+                <time title="修改时间：2019-09-15 18:38:51" itemprop="dateModified" datetime="2019-09-15T18:38:51+08:00">2019-09-15</time>
               </span>
             
           
@@ -970,43 +1134,26 @@
 
       
         
-          
-            <ol>
-<li><h4 id="泛型只在编译阶段有效"><a href="#泛型只在编译阶段有效" class="headerlink" title="泛型只在编译阶段有效"></a>泛型只在编译阶段有效</h4><p> 泛型只在编译阶段有效，是为了解决不确定具体对象类型的问题。</p>
+          <ol>
+<li><h3 id="泛型只在编译阶段有效"><a href="#泛型只在编译阶段有效" class="headerlink" title="泛型只在编译阶段有效"></a>泛型只在编译阶段有效</h3><p> 泛型只在编译阶段有效，是为了解决不确定具体对象类型的问题。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringArrayList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">List&lt;Integer&gt; integerArrayList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">System.out.println(stringArrayList.getClass().equals(integerArrayList.getClass()));</span><br><span class="line"></span><br><span class="line">Generic&lt;String&gt; stringGeneric = <span class="keyword">new</span> Generic&lt;&gt;(<span class="string">"test"</span>);</span><br><span class="line">Generic&lt;Integer&gt; integerGeneric = <span class="keyword">new</span> Generic&lt;&gt;(<span class="number">123</span>);</span><br><span class="line">System.out.println(stringGeneric.getClass().equals(integerGeneric.getClass()));</span><br></pre></td></tr></table></figure>
 
 <p> 输出为</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">true</span></span><br><span class="line"><span class="keyword">true</span></span><br></pre></td></tr></table></figure>
 
 <p> 说明Java中的泛型，只在编译阶段有效。在编译过程中，正确检验泛型结果后，会将泛型的相关信息擦除，并且在对象进入和离开方法的边界处添加类型检查和类型转换的方法。也就是说，泛型信息不会进入到运行时阶段。</p>
-</li>
-<li><h4 id="约定俗成的符号"><a href="#约定俗成的符号" class="headerlink" title="约定俗成的符号"></a>约定俗成的符号</h4><ul>
-<li><code>E</code>代表<code>Element</code>，用于集合中的元素</li>
-<li><code>T</code>代表 <code>the Type of object</code>，表示某个类</li>
-<li><code>K</code>代表<code>Key</code>，<code>V</code>代表<code>Value</code>，用于键值对元素。</li>
-</ul>
-</li>
-<li><h4 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h4><blockquote>
-<p>泛型类型用于类的定义中，被称为泛型类。通过泛型可以完成对一组类的操作对外开放相同的接口。最典型的就是各种容器类，如：List、Set、Map。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类名称 &lt;泛型标识：可以随便写任意标识号，标识指定的泛型的类型&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">private</span> 泛型标识 <span class="comment">/*（成员变量类型）*/</span> <span class="keyword">var</span>; </span><br><span class="line">  .....</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 一个简单的泛型类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Generic</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T key;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Generic</span><span class="params">(T key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 对比非泛型类,使用<code>Object</code>作为参数类型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NoGeneric</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object key;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">NoGeneric</span><span class="params">(Object key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.key = key;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getKey</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 泛型类的应用避免了强制转换的风险，提升了安全性和代码的可读性。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Generic&lt;String&gt; stringGeneric = <span class="keyword">new</span> Generic&lt;&gt;(<span class="string">"test"</span>);</span><br><span class="line">Generic&lt;Integer&gt; integerGeneric = <span class="keyword">new</span> Generic&lt;&gt;(<span class="number">123</span>);</span><br><span class="line"><span class="comment">// 不需要进行强制类型转换</span></span><br><span class="line">String key = stringGeneric.getKey();</span><br><span class="line">Integer key1 = integerGeneric.getKey();</span><br><span class="line"></span><br><span class="line">NoGeneric stringNoGeneric = <span class="keyword">new</span> NoGeneric(<span class="string">"test"</span>);</span><br><span class="line">NoGeneric integerNoGeneric = <span class="keyword">new</span> NoGeneric(<span class="number">123</span>);</span><br><span class="line">String key2 = (String) stringNoGeneric.getKey();</span><br><span class="line">Integer key3 = (Integer) integerNoGeneric.getKey();</span><br></pre></td></tr></table></figure>
-</li>
-<li><h4 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h4></li>
-</ol>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/22/Java泛型/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </li></ol></div>
 
     
 
@@ -1105,13 +1252,23 @@
                 
               
 
-              <time title="创建时间：2019-07-15 20:53:01 / 修改时间：20:58:24" itemprop="dateCreated datePublished" datetime="2019-07-15T20:53:01+08:00">2019-07-15</time>
+              <time title="创建时间：2019-07-15 20:53:01" itemprop="dateCreated datePublished" datetime="2019-07-15T20:53:01+08:00">2019-07-15</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-15 18:42:51" itemprop="dateModified" datetime="2019-09-15T18:42:51+08:00">2019-09-15</time>
+              </span>
             
           
 
@@ -1273,7 +1430,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-15 13:00:18" itemprop="dateModified" datetime="2019-09-15T13:00:18+08:00">2019-09-15</time>
+                <time title="修改时间：2019-09-15 13:21:02" itemprop="dateModified" datetime="2019-09-15T13:21:02+08:00">2019-09-15</time>
               </span>
             
           
@@ -1313,8 +1470,7 @@
 
       
         
-          
-            <h2 id="第四章-项目整合管理"><a href="#第四章-项目整合管理" class="headerlink" title="第四章 项目整合管理"></a>第四章 项目整合管理</h2><ol>
+          <h2 id="第四章-项目整合管理"><a href="#第四章-项目整合管理" class="headerlink" title="第四章 项目整合管理"></a>第四章 项目整合管理</h2><ol>
 <li><h3 id="什么是整合管理，整合什么，如何整合？整合管理的发展趋势是什么？"><a href="#什么是整合管理，整合什么，如何整合？整合管理的发展趋势是什么？" class="headerlink" title="什么是整合管理，整合什么，如何整合？整合管理的发展趋势是什么？"></a>什么是整合管理，整合什么，如何整合？整合管理的发展趋势是什么？</h3>项目整合管理包括对隶属于项目管理过程组的各种过程和项目管理活动进行识别、定义、组合、统一和协调的各个过程。<br> <strong>项目整合管理指的是：</strong><ul>
 <li>确保产品、服务或成果的交付日期，项目生命周期以及效益管理计划这些方面保持一致</li>
 <li>编织项目管理计划以实现项目目标</li>
@@ -1331,42 +1487,19 @@
 <li>使用可视化管理工具</li>
 <li>项目知识管理</li>
 <li>增加项目经理的职责</li>
-<li>混合型方法</li>
-</ul>
-</li>
-<li><h3 id="项目章程是干什么的，它的作用是什么，主要内容是什么？"><a href="#项目章程是干什么的，它的作用是什么，主要内容是什么？" class="headerlink" title="项目章程是干什么的，它的作用是什么，主要内容是什么？"></a>项目章程是干什么的，它的作用是什么，主要内容是什么？</h3>制定项目章程是编写一份<strong>正式批准项目</strong>并<strong>授权项目经理</strong>在项目活动中使用<strong>组织资源</strong>的文件的过程。<br>本过程的主要作用是，明确项目与组织战略目标之间的直接联系，确立项目的正式地位，并展示组织对项目的承诺。本过程仅开展一次或尽在项目的预定义点开展。<br>项目章程在 项目执行组织与 需求组织之间建立起伙伴关系。在执行外部项目时，通常效益用正式的合同来达成合作协议。这种情况下，可能仍要用项目章程来建立 组织内部的合作关系，以确保正确交付合同内容。<br>项目章程授权项目经理规划 、执行和控制项目。<br>项目由项目以外的机构来启动，如发起人、项目集或项目管理办公室（PMO）、项目组合治理委员会主席或其授权代表。</li>
-<li><h3 id="为什么要进行商业论证？商业论证编织的触发因素有哪些？"><a href="#为什么要进行商业论证？商业论证编织的触发因素有哪些？" class="headerlink" title="为什么要进行商业论证？商业论证编织的触发因素有哪些？"></a>为什么要进行商业论证？商业论证编织的触发因素有哪些？</h3>经批准的商业论证或类似文件是 最长用于制定项目长成的商业文件。商业论证从商业视角描述必要的信息，并且据此决定项目的期望结果是否值得所需投资。高于项目级别的精力和 高管们通常使用改 文件作为决策的依据。一般情况下，商业论证会包含<strong>商业需求和成本效益分析</strong>，以<strong>论证项目的合理性并确定项目边界</strong>。<br>商业论证的编织可由以下一个或多个因素引发：<ul>
-<li>市场需求</li>
-<li>组织需要</li>
-<li>客户要求</li>
-<li>技术进步 </li>
-<li>法律要求 </li>
-<li>生态影响</li>
-<li>社会需要</li>
-</ul>
-</li>
-<li><h3 id="项目管理计划是什么样的计划？项目管理计划包括哪几种？计划是由谁来制定的？为什么项目管理计划的输入中要有其他过程的输出？项目管理计划和项目文件有什么区别？"><a href="#项目管理计划是什么样的计划？项目管理计划包括哪几种？计划是由谁来制定的？为什么项目管理计划的输入中要有其他过程的输出？项目管理计划和项目文件有什么区别？" class="headerlink" title="项目管理计划是什么样的计划？项目管理计划包括哪几种？计划是由谁来制定的？为什么项目管理计划的输入中要有其他过程的输出？项目管理计划和项目文件有什么区别？"></a>项目管理计划是什么样的计划？项目管理计划包括哪几种？计划是由谁来制定的？为什么项目管理计划的输入中要有其他过程的输出？项目管理计划和项目文件有什么区别？</h3>制定项目管理计划是定义、准备和协调项目计划的所有组成部分，并把它们整合为一份综合项目管理计划的过程。项目管理计划确定项目的执行、监控和收尾方式，其内容会因项目所在的应用领域和复杂程度而异。<br>创建项目管理计划需要整合诸多过程的输出。其他规划过程所输出的 自己花和基准都是本过程的输入。此外，对这些自计划和基准的变更都可能导致对项目管理计划的相应更新。<br>项目管理计划组件包括：子计划管理、基准、其他组件。项目管理计划是用于管理项目的主要文件之一。管理项目时还会使用其他项目文件。这些其他文件不属于项目管理计划，但它们也是实现高效管理所必须的文件。</li>
-<li><h3 id="指导与管理项目执行的主要活动是什么？主要任务是什么？为什么在执行过程中有变更的产生？这个过程的主要成果是什么？工作绩效数据是怎么产生的，包括什么内容？变更包括哪4种，怎么进行区别？什么是问题日志，包括什么内容？"><a href="#指导与管理项目执行的主要活动是什么？主要任务是什么？为什么在执行过程中有变更的产生？这个过程的主要成果是什么？工作绩效数据是怎么产生的，包括什么内容？变更包括哪4种，怎么进行区别？什么是问题日志，包括什么内容？" class="headerlink" title="指导与管理项目执行的主要活动是什么？主要任务是什么？为什么在执行过程中有变更的产生？这个过程的主要成果是什么？工作绩效数据是怎么产生的，包括什么内容？变更包括哪4种，怎么进行区别？什么是问题日志，包括什么内容？"></a>指导与管理项目执行的主要活动是什么？主要任务是什么？为什么在执行过程中有变更的产生？这个过程的主要成果是什么？工作绩效数据是怎么产生的，包括什么内容？变更包括哪4种，怎么进行区别？什么是问题日志，包括什么内容？</h3>指导与管理项目工作是为实现项目目标而领导和执行项目管理计划中所确定的工作，并实现已批准变更的过程。本过程的主要作用是，对项目工作和可交付成果开展综合管理，以提高项目成功的可能性。<br>可作为本过程输入的项目文件包括：变更日志、经验教训登记册、里程碑清单、项目沟通记录、项目进度计划、需求跟踪矩阵、风险登记册、风险报告。<br>指导与管理项目工作的输出主要为：<strong>可交付成果、工作绩效数据、问题日志、变更请求、项目管理计划更新、组织过程资产更新。</strong><br>工作绩效数据是在执行项目工作的过程中，从每个正在执行的活动中收集到的原始观察结果和测量值。数据通常是最低层次的细节，将交由其他过程从中提炼出信息。在工作执行过程中收集数据，再交由控制过程做进一步分析。例如：工作绩效数据包括已完成的工作、关键绩效指标（KPI）、技术绩效册类结果、进度活动的世纪开始时间和完成日期、已完成的故事点、可交付成果状态、进度进展情况、变更请求的数量、缺陷的数量、实际发生的成本、实际持续时间等。<br>变更请求可能包括：<strong>纠正措施、预防措施、缺陷补救、更新。</strong><br>问题日志是一种记录和跟进所有问题的项目文件，所需记录和跟进的内容可能包括：<strong>问题类型、问题提出者和提出时间、问题描述、问题优先级、由谁负责解决问题、目标解决日期、问题状态、最终解决情况</strong></li>
-</ol>
-<h2 id="第九章-项目资源管理"><a href="#第九章-项目资源管理" class="headerlink" title="第九章 项目资源管理"></a>第九章 项目资源管理</h2><ol>
-<li><h3 id="什么是自组织团队，什么是虚拟团队-分布式团队？"><a href="#什么是自组织团队，什么是虚拟团队-分布式团队？" class="headerlink" title="什么是自组织团队，什么是虚拟团队/分布式团队？"></a>什么是自组织团队，什么是虚拟团队/分布式团队？</h3></li>
-</ol>
-<ul>
-<li>自组织团队。随着敏捷方法在 IT 项目中的应用越来越普遍，自组织团队(无需集中管控运作) 越来越多。对于拥有自组织团队的项目，“项目经理”(可能不称为“项目经理”)的角色主要是为团队创造环境、提供支持并信任团队可以完成工作。成功的自组织团队通常由通用的专才而不是主题专家组成，他们能够不断适应变化的环境并采纳建设性反馈。</li>
-<li>虚拟团队/分布式团队。项目全球化推动了对虚拟团队的需求的增长。这些团队成员致力于同一个项目，却分布在不同的地方。沟通技术(如电子邮件、电话会议、社交媒体、网络会议 和视频会议等)的使用，使虚拟团队变得可行。虚拟团队管理有独特的优势，例如能够利用项目团队的专业技术，即使相应的专家不在同一地理区域;将在家办公的员工纳入团队;以及将行动不便者或残疾人纳入团队。而虚拟团队管理面临的挑战主要在于沟通，包括可能产生孤立感、团队成员之间难以分享知识和经验、难以跟进进度和生产率，以及可能存在时区和文化差异。</li>
-</ul>
-<ol start="2">
-<li><h3 id="为什么要制定资源管理计划？从哪里获得对资源对需求？使用什么工具来进行组织机构与职位描述？RAM与RACI有没有区别？"><a href="#为什么要制定资源管理计划？从哪里获得对资源对需求？使用什么工具来进行组织机构与职位描述？RAM与RACI有没有区别？" class="headerlink" title="为什么要制定资源管理计划？从哪里获得对资源对需求？使用什么工具来进行组织机构与职位描述？RAM与RACI有没有区别？"></a>为什么要制定资源管理计划？从哪里获得对资源对需求？使用什么工具来进行组织机构与职位描述？RAM与RACI有没有区别？</h3></li>
-</ol>
-<ul>
-<li>资源规划用于确定和识别一种方法，以确保项目的成功完成有足够的可用资源。项目资源可能 包括团队成员、用品、材料、设备、服务和设施。有效的资源规划需要考虑稀缺资源的可用性和竞争，并编制相应的计划。</li>
-<li>这些资源可以从组织内部资产获得，或者通过采购过程从组织外部获取。其他项目可能在同一时间和地点竞争项目所需的相同资源，从而可能对项目成本、进度、风险、质量和其他项目领域造成显著影响。</li>
-</ul>
-
+<li>混合型方法
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/15/PMP学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </li></ul></li></ol></div>
 
     
 
@@ -1480,7 +1613,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-12 08:48:13" itemprop="dateModified" datetime="2019-09-12T08:48:13+08:00">2019-09-12</time>
+                <time title="修改时间：2019-09-15 18:43:17" itemprop="dateModified" datetime="2019-09-15T18:43:17+08:00">2019-09-15</time>
               </span>
             
           
@@ -1644,7 +1777,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-15 13:09:09" itemprop="dateModified" datetime="2019-09-15T13:09:09+08:00">2019-09-15</time>
+                <time title="修改时间：2019-09-15 13:31:25" itemprop="dateModified" datetime="2019-09-15T13:31:25+08:00">2019-09-15</time>
               </span>
             
           
@@ -1684,8 +1817,7 @@
 
       
         
-          
-            <ol>
+          <ol>
 <li><h3 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h3><ol>
 <li><p><code>_config.yml</code>中,配置主题为<code>theme: next</code></p>
 </li>
@@ -1693,36 +1825,19 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme_config:</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line"><span class="attr">    home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">home</span></span><br><span class="line"><span class="attr">    about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">user</span></span><br><span class="line"><span class="attr">    tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">tags</span></span><br><span class="line">    <span class="comment">#categories: /categories/ || th</span></span><br><span class="line"><span class="attr">    archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">archive</span></span><br><span class="line">    <span class="comment"># Social Links</span></span><br></pre></td></tr></table></figure>
 
 <blockquote><p>使用这一方式，你的全部配置都将置于 hexo 主要配置文件中（hexo/_config.yml），并且不需要修改 next/_config.yml，或者创建什么其他的文件。但是所有的主题选项必须放置在 theme_config 后，并全部增加两个空格的缩进。</p>
-</blockquote></li>
-</ol>
-</li>
-<li><h3 id="开启搜索"><a href="#开启搜索" class="headerlink" title="开启搜索"></a>开启搜索</h3><ol>
-<li><p>安装<code>npm install hexo-generator-searchdb --save</code></p>
-</li>
-<li><p>修改站点配置<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line"><span class="attr">  path:</span> <span class="string">search.xml</span></span><br><span class="line"><span class="attr">  field:</span> <span class="string">post</span></span><br><span class="line"><span class="attr">  format:</span> <span class="string">html</span></span><br><span class="line"><span class="attr">  limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改主题配置</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line"><span class="attr">  enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><h3 id="开启侧边栏头像"><a href="#开启侧边栏头像" class="headerlink" title="开启侧边栏头像"></a>开启侧边栏头像</h3><ol>
-<li>上传文件到source/uploads文件夹(如果没有该文件夹则手动创建)</li>
-<li>修改主题配置<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># In theme directory (source/images): /images/avatar.gif</span></span><br><span class="line">  <span class="comment"># In site directory (source/uploads): /uploads/avatar.gif</span></span><br><span class="line">  <span class="comment"># You can also use other linking images.</span></span><br><span class="line"><span class="attr">  url:</span> <span class="string">/uploads/avatar.jpg</span></span><br><span class="line">  <span class="comment"># If true, the avatar would be dispalyed in circle.</span></span><br><span class="line"><span class="attr">  rounded:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If true, the avatar would be rotated with the cursor.</span></span><br><span class="line"><span class="attr">  rotated:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><h3 id="返回顶部按钮的百分比"><a href="#返回顶部按钮的百分比" class="headerlink" title="返回顶部按钮的百分比"></a>返回顶部按钮的百分比</h3><ol>
-<li>scrollpercent设置为<code>true</code><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">back2top:</span></span><br><span class="line"><span class="attr">    enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Back to top in sidebar.</span></span><br><span class="line"><span class="attr">    sidebar:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># Scroll percent label in b2t button.</span></span><br><span class="line"><span class="attr">    scrollpercent:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-</li>
-</ol>
-
+</blockquote>
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/14/hexo配置历史/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
-    </div>
+    </li></ol></li></ol></div>
 
     
 
@@ -1933,180 +2048,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://qiuqiu.dev/2019/07/14/将数组转换成ArrayList/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="qiu_zs@126.com">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="qiuqiu的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/14/将数组转换成ArrayList/" class="post-title-link" itemprop="url">将数组转换成ArrayList</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-14 22:36:47 / 修改时间：22:43:08" itemprop="dateCreated datePublished" datetime="2019-07-14T22:36:47+08:00">2019-07-14</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li><h3 id="使用工具类转换时的坑"><a href="#使用工具类转换时的坑" class="headerlink" title="使用工具类转换时的坑"></a>使用工具类转换时的坑</h3><p>使用工具类<code>Arrays</code>将数组转换成<code>List</code>时,转换后的List不能直接调用<code>add()</code>方法增加元素。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testArrayToList</span><span class="params">()</span></span>&#123;</span><br><span class="line">    String[] tests  = &#123;<span class="string">"test1"</span>,<span class="string">"test2"</span>,<span class="string">"test3"</span>&#125;;</span><br><span class="line">    List&lt;String&gt; strings = Arrays.asList(tests);</span><br><span class="line">    strings.add(<span class="string">"1234"</span>);</span><br><span class="line">    System.out.println(JSON.toJSONString(strings));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 此处会报错 <code>java.lang.UnsupportedOperationException</code></p>
-</li>
-<li><h3 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h3><p>工具类<code>Arrays</code>的<code>asList()</code>方法,返回的是其一个内部类ArrayList, 该类没有重写<code>add()</code>方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Arrays.asList()方法</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a fixed-size list backed by the specified array.  (Changes to</span></span><br><span class="line"><span class="comment"> * the returned list "write through" to the array.)  This method acts</span></span><br><span class="line"><span class="comment"> * as bridge between array-based and collection-based APIs, in</span></span><br><span class="line"><span class="comment"> * combination with &#123;<span class="doctag">@link</span> Collection#toArray&#125;.  The returned list is</span></span><br><span class="line"><span class="comment"> * serializable and implements &#123;<span class="doctag">@link</span> RandomAccess&#125;.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This method also provides a convenient way to create a fixed-size</span></span><br><span class="line"><span class="comment"> * list initialized to contain several elements:</span></span><br><span class="line"><span class="comment"> * &lt;pre&gt;</span></span><br><span class="line"><span class="comment"> *     List&amp;lt;String&amp;gt; stooges = Arrays.asList("Larry", "Moe", "Curly");</span></span><br><span class="line"><span class="comment"> * &lt;/pre&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;T&gt; the class of the objects in the array</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> a the array by which the list will be backed</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a list view of the specified array</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SafeVarargs</span></span><br><span class="line"><span class="meta">@SuppressWarnings</span>(<span class="string">"varargs"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">asList</span><span class="params">(T... a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;&gt;(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p> 返回的内部类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@serial</span> include</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">RandomAccess</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
-
-<p> 没有重写的抽象类方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This implementation always throws an</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> UnsupportedOperationException&#125;.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> UnsupportedOperationException &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> ClassCastException            &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException          &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IllegalArgumentException      &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IndexOutOfBoundsException     &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This implementation always throws an</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> UnsupportedOperationException&#125;.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> UnsupportedOperationException &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> IndexOutOfBoundsException     &#123;<span class="doctag">@inheritDoc</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><h3 id="参考《阿里巴巴JAVA编程规范》"><a href="#参考《阿里巴巴JAVA编程规范》" class="headerlink" title="参考《阿里巴巴JAVA编程规范》"></a>参考《阿里巴巴JAVA编程规范》</h3><blockquote><ol start="5">
-<li>【强制】使用工具类 Arrays.asList()把数组转换成集合时，不能使用其修改集合相关的方 法，它的 add/remove/clear 方法会抛出 UnsupportedOperationException 异常。 说明:asList 的返回对象是一个 Arrays 内部类，并没有实现集合的修改方法。Arrays.asList 体现的是适配器模式，只是转换接口，后台的数据仍是数组。<pre><code>String[] str = new String[] { &quot;you&quot;, &quot;wu&quot; };</code></pre>List list = Arrays.asList(str); 第一种情况:list.add(“yangguanbao”); 运行时异常。 第二种情况:str[0] = “gujin”; 那么list.get(0)也会随之修改。</li>
-</ol>
-</blockquote>
-</li>
-<li><h3 id="解决的办法"><a href="#解决的办法" class="headerlink" title="解决的办法"></a>解决的办法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List list = <span class="keyword">new</span> ArrayList&lt;&gt;(Arrays.asList(<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>))</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2149,7 +2097,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2182,7 +2130,13 @@
         
           
         
-        <span class="site-state-item-count">7</span>
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
