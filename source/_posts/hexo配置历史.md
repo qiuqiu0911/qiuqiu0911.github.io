@@ -20,6 +20,7 @@ tags: hexo
     {% blockquote %}
     使用这一方式，你的全部配置都将置于 hexo 主要配置文件中（hexo/_config.yml），并且不需要修改 next/_config.yml，或者创建什么其他的文件。但是所有的主题选项必须放置在 theme_config 后，并全部增加两个空格的缩进。
     {% endblockquote %}
+    主题版本 V7.2.0
     <!--more-->
 2. ### 开启搜索
     1. 安装`npm install hexo-generator-searchdb --save`
