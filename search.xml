@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SpringBoot web应用中自定义的controller找不到]]></title>
+    <url>%2F2020%2F02%2F01%2FSpringBoot-web%E5%BA%94%E7%94%A8%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84controller%E6%89%BE%E4%B8%8D%E5%88%B0%2F</url>
+    <content type="text"><![CDATA[问题：自定义的controller增加@RestController注解后访问 仍返回404 原因：springboot 推荐启动类与controller包在同一层级，默认也是按这个扫描的解决方案： 可以放在同一层级，如下图 也可以通过增加@ComponentScan注解解决12345678@SpringBootApplication@ComponentScan(basePackages = "dev.qiuqiu.controller")public class DemoApplication &#123; public static void main(String[] args) &#123; SpringApplication.run(DemoApplication.class, args); &#125;&#125;]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[brew下载加速]]></title>
     <url>%2F2020%2F01%2F06%2Fbrew%E4%B8%8B%E8%BD%BD%E5%8A%A0%E9%80%9F%2F</url>
     <content type="text"><![CDATA[Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。使用brew安装软件时, 可以将brew的仓库访问地址改成alibaba的地址来加速 将brew访问的仓库地址改成aliyun镜像 替换brew.git 仓库地址 12cd "$(brew --repo)" git remote set-url origin https://mirrors.aliyun.com/homebrew/brew.git 替换homebrew-core.git仓库地址 12cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core" git remote set-url origin https://mirrors.aliyun.com/homebrew/homebrew-core.git 替换homebrew-bottles访问地址 1echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles' &gt;&gt; ~/.zshrc 如需换回原来官方的地址，同样修改以上三处 替换brew.git 仓库地址 12cd "$(brew --repo)" git remote set-url origin https://github.com/Homebrew/brew.git 替换homebrew-core.git仓库地址 12cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"git remote set-url origin https://github.com/Homebrew/homebrew-core.git 替换homebrew-bottles访问地址vi ~/.zshrc 删除HOMEBREW_BOTTLE_DOMAIN所在的行]]></content>
