@@ -103,7 +103,7 @@
 <meta property="og:description" content="本模式需要解决的问题建立一个气象观测站，根据气象信息(温度、湿度、气压)的变化，设计多个气象布告板">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://qiuqiu.dev/2020/02/24/设计模式之观察者模式/需求描述.png">
-<meta property="og:updated_time" content="2020-02-24T05:07:37.675Z">
+<meta property="og:updated_time" content="2020-02-24T09:05:46.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式之观察者模式">
 <meta name="twitter:description" content="本模式需要解决的问题建立一个气象观测站，根据气象信息(温度、湿度、气压)的变化，设计多个气象布告板">
@@ -393,7 +393,7 @@
                 
               
 
-              <time title="创建时间：2020-02-24 12:25:10 / 修改时间：13:07:37" itemprop="dateCreated datePublished" datetime="2020-02-24T12:25:10+08:00">2020-02-24</time>
+              <time title="创建时间：2020-02-24 12:25:10 / 修改时间：17:05:46" itemprop="dateCreated datePublished" datetime="2020-02-24T12:25:10+08:00">2020-02-24</time>
             </span>
           
 
@@ -461,7 +461,8 @@
 <ul>
 <li><strong>观察者模式</strong>定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。</li>
 </ul>
-
+<p>调用时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObserverPatternV2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        WeatherData weatherData = <span class="keyword">new</span> WeatherData();</span><br><span class="line">        GeneralDisplay generalDisplay = <span class="keyword">new</span> GeneralDisplay();</span><br><span class="line">        weatherData.addObserver(generalDisplay);</span><br><span class="line">        weatherData.setMeasurementsChanged(<span class="string">"1"</span>, <span class="string">"23"</span>, <span class="string">"333"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
