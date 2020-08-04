@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>BeanUtils拷贝属性报错IllegalArgumentException</title>
+    <url>/2019/12/06/BeanUtils%E6%8B%B7%E8%B4%9D%E5%B1%9E%E6%80%A7%E6%8A%A5%E9%94%99IllegalArgumentException/</url>
+    <content><![CDATA[<p><code>org.springframework.beans.BeanUtils</code>提供了一个拷贝类属性的方法<code>copyProperties()</code>,在两个对象具有相同属性时，可以方便的将一个对象的属性值复制给另一个对象的对应属性。</p>
+<p>如 <code>Source</code>与<code>Target</code>均含有一个名为<code>id</code>的属性，通过<code>BeanUtils.copyProperties(source, target);</code>可以将source的id属性复制给target。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Source</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    Integer id;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCopyProperties</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Source source = <span class="keyword">new</span> Source();</span><br><span class="line">    Target target = <span class="keyword">new</span> Target();</span><br><span class="line"><span class="comment">//  source.setId(123);</span></span><br><span class="line">    BeanUtils.copyProperties(source, target);</span><br><span class="line">    System.out.println(JSONObject.toJSON(target));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是，如果<code>source</code>的id属性为<code>null</code>, <code>BeanUtils.copyProperties(source, target);</code>方法会抛出异常<code>IllegalArgumentException</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.springframework.beans.FatalBeanException: Could not copy property <span class="string">'id'</span> from source to target; nested exception is java.lang.IllegalArgumentException</span><br><span class="line">	at org.springframework.beans.BeanUtils.copyProperties(BeanUtils.java:<span class="number">690</span>)</span><br><span class="line">    at org.springframework.beans.BeanUtils.copyProperties(BeanUtils.java:<span class="number">602</span>)</span><br></pre></td></tr></table></figure>
+<p>这个是目标的bean实体没有确定。如果javaBean中但属性含有基本类型，而model模型的对应的属性值为null，就会出现这个异常。<br><strong>解决办法</strong>： javaBean中的属性值不要使用基本类型。</p>
+<p>参考《阿里巴巴Java开发手册》</p>
+<blockquote>
+<ol start="8">
+<li>关于基本数据类型与包装数据类型的使用标准如下:</li>
+</ol>
+<p><strong>1) 【强制】所有的POJO类属性必须使用包装数据类型。</strong><br>2) 【强制】RPC方法的返回值和参数必须使用包装数据类型。<br>3) 【推荐】所有的局部变量使用基本数据类型。<br>说明:POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何<br>NPE 问题，或者入库检查，都由使用者来保证。<br>正例:数据库的查询结果可能是 null，因为自动拆箱，用基本数据类型接收有 NPE 风险。 反例:比如显示成交总额涨跌情况，即正负 x%，x 为基本数据类型，调用的 RPC 服务，调用<br>不成功时，返回的是默认值，页面显示为 0%，这是不合理的，应该显示成中划线。所以包装 数据类型的 null 值，能够表示额外的信息，如:远程调用失败，异常退出。</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CAS简析</title>
     <url>/2019/07/14/CAS%E7%AE%80%E6%9E%90/</url>
     <content><![CDATA[<ol>
@@ -63,27 +84,6 @@
       </tags>
   </entry>
   <entry>
-    <title>BeanUtils拷贝属性报错IllegalArgumentException</title>
-    <url>/2019/12/06/BeanUtils%E6%8B%B7%E8%B4%9D%E5%B1%9E%E6%80%A7%E6%8A%A5%E9%94%99IllegalArgumentException/</url>
-    <content><![CDATA[<p><code>org.springframework.beans.BeanUtils</code>提供了一个拷贝类属性的方法<code>copyProperties()</code>,在两个对象具有相同属性时，可以方便的将一个对象的属性值复制给另一个对象的对应属性。</p>
-<p>如 <code>Source</code>与<code>Target</code>均含有一个名为<code>id</code>的属性，通过<code>BeanUtils.copyProperties(source, target);</code>可以将source的id属性复制给target。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Source</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    Integer id;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Target</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCopyProperties</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Source source = <span class="keyword">new</span> Source();</span><br><span class="line">    Target target = <span class="keyword">new</span> Target();</span><br><span class="line"><span class="comment">//  source.setId(123);</span></span><br><span class="line">    BeanUtils.copyProperties(source, target);</span><br><span class="line">    System.out.println(JSONObject.toJSON(target));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是，如果<code>source</code>的id属性为<code>null</code>, <code>BeanUtils.copyProperties(source, target);</code>方法会抛出异常<code>IllegalArgumentException</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.springframework.beans.FatalBeanException: Could not copy property <span class="string">'id'</span> from source to target; nested exception is java.lang.IllegalArgumentException</span><br><span class="line">	at org.springframework.beans.BeanUtils.copyProperties(BeanUtils.java:<span class="number">690</span>)</span><br><span class="line">    at org.springframework.beans.BeanUtils.copyProperties(BeanUtils.java:<span class="number">602</span>)</span><br></pre></td></tr></table></figure>
-<p>这个是目标的bean实体没有确定。如果javaBean中但属性含有基本类型，而model模型的对应的属性值为null，就会出现这个异常。<br><strong>解决办法</strong>： javaBean中的属性值不要使用基本类型。</p>
-<p>参考《阿里巴巴Java开发手册》</p>
-<blockquote>
-<ol start="8">
-<li>关于基本数据类型与包装数据类型的使用标准如下:</li>
-</ol>
-<p><strong>1) 【强制】所有的POJO类属性必须使用包装数据类型。</strong><br>2) 【强制】RPC方法的返回值和参数必须使用包装数据类型。<br>3) 【推荐】所有的局部变量使用基本数据类型。<br>说明:POJO 类属性没有初值是提醒使用者在需要使用时，必须自己显式地进行赋值，任何<br>NPE 问题，或者入库检查，都由使用者来保证。<br>正例:数据库的查询结果可能是 null，因为自动拆箱，用基本数据类型接收有 NPE 风险。 反例:比如显示成交总额涨跌情况，即正负 x%，x 为基本数据类型，调用的 RPC 服务，调用<br>不成功时，返回的是默认值，页面显示为 0%，这是不合理的，应该显示成中划线。所以包装 数据类型的 null 值，能够表示额外的信息，如:远程调用失败，异常退出。</p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java泛型</title>
     <url>/2019/07/22/Java%E6%B3%9B%E5%9E%8B/</url>
     <content><![CDATA[<ol>
@@ -120,6 +120,46 @@
 ]]></content>
       <tags>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL主从复制配置</title>
+    <url>/2020/08/04/MySQL%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<ol>
+<li><h4 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h4><p>多地公用一套数据，但网络有时不通；数据在中心节点统一维护，其他子节点仅进行查询。<br>采用MySQL主从同步方案，在网络链接正常时将主库的数据同步到从库。子节点只读取本地的数据库。</p>
+</li>
+<li><h4 id="主库配置"><a href="#主库配置" class="headerlink" title="主库配置"></a>主库配置</h4><ol>
+<li><p>修改my.cnf 开启二进制日志，并设置server-id</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin&#x3D;mysql-bin #开启二进制日志</span><br><span class="line">server-id&#x3D;1 #设置server-id，必须唯一</span><br><span class="line"># 不同步哪些数据库  </span><br><span class="line">binlog-ignore-db&#x3D;mysql  </span><br><span class="line">binlog-ignore-db&#x3D;information_schema</span><br><span class="line">binlog-ignore-db&#x3D;performance_shcema</span><br><span class="line">binlog-ignore-db&#x3D;sys</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启mysql，连接mysql查看master的状态，并记录二进制文件名(例：mysql-bin.000003)和位置(例：73)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># mysql -h localhost -u name -p password</span><br><span class="line">mysql &gt; SHOW MASTER STATUS;</span><br><span class="line">+------------------+----------+--------------+------------------+</span><br><span class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |</span><br><span class="line">+------------------+----------+--------------+------------------+</span><br><span class="line">| mysql-bin.000003 | 73       | test         | manual, mysql     |</span><br><span class="line">+------------------+----------+--------------+------------------+</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><h4 id="从库配置"><a href="#从库配置" class="headerlink" title="从库配置"></a>从库配置</h4><ol>
+<li><p>修改/etc/my.cnf,设置server-id</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id&#x3D;2 #设置server-id，必须唯一</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启mysql，打开mysql会话，执行同步SQL语句(需要主服务器主机名，登陆凭据，二进制文件的名称和位置)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; CHANGE MASTER TO</span><br><span class="line">-&gt;     MASTER_HOST&#x3D;&#39;主库ip&#39;,</span><br><span class="line">-&gt;     MASTER_USER&#x3D;&#39;主库用户名&#39;,</span><br><span class="line">-&gt;     MASTER_PASSWORD&#x3D;&#39;主库密码&#39;,</span><br><span class="line">-&gt;     MASTER_LOG_FILE&#x3D;&#39;mysql-bin.000003&#39;,</span><br><span class="line">-&gt;     MASTER_LOG_POS&#x3D;73;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动slave同步进程</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; start slave;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看slave同步状态</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> show slave status\G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">           Slave_IO_State: Waiting for master to send event</span><br><span class="line">              Master_Host: mysql-master</span><br><span class="line">              Master_User: root</span><br><span class="line">              Master_Port: 3306</span><br><span class="line">            Connect_Retry: 60</span><br><span class="line">          Master_Log_File: mysql-bin.000013</span><br><span class="line">      Read_Master_Log_Pos: 11662</span><br><span class="line">           Relay_Log_File: mysqld-relay-bin.000022</span><br><span class="line">            Relay_Log_Pos: 11765</span><br><span class="line">    Relay_Master_Log_File: mysql-bin.000013</span><br><span class="line">         Slave_IO_Running: Yes</span><br><span class="line">        Slave_SQL_Running: Yes</span><br><span class="line">          Replicate_Do_DB: </span><br><span class="line">      Replicate_Ignore_DB:</span><br></pre></td></tr></table></figure>
+<p>当<code>Slave_IO_Running</code>和<code>Slave_SQL_Running</code>都为YES的时候就表示主从同步设置成功了。</p>
+</li>
+</ol>
+</li>
+<li><h4 id="验证配置"><a href="#验证配置" class="headerlink" title="验证配置"></a>验证配置</h4><p>在主master数据库的一张表中插入一条数据，在slave的相同数据表中查看是否有新增的数据即可验证主从复制功能是否有效。<br>还可以关闭slave（mysql&gt;stop slave;）,然后再修改master，看slave是否也相应修改（停止slave后，master的修改不会同步到slave），就可以完成主从复制功能的验证了。</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>运维</tag>
       </tags>
   </entry>
   <entry>
@@ -193,21 +233,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SpringBoot web应用中自定义的controller找不到</title>
-    <url>/2020/02/01/SpringBoot-web%E5%BA%94%E7%94%A8%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84controller%E6%89%BE%E4%B8%8D%E5%88%B0/</url>
-    <content><![CDATA[<p>问题：自定义的<code>controller</code>增加<code>@RestController</code>注解后访问 仍返回404</p>
-<img src="/2020/02/01/SpringBoot-web%E5%BA%94%E7%94%A8%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84controller%E6%89%BE%E4%B8%8D%E5%88%B0/%E9%97%AE%E9%A2%98.png" class="" title="问题">
-<p>原因：springboot 推荐<code>启动类</code>与<code>controller包</code>在同一层级，默认也是按这个扫描的<br>解决方案：</p>
-<ol>
-<li>可以放在同一层级，如下图<img src="/2020/02/01/SpringBoot-web%E5%BA%94%E7%94%A8%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84controller%E6%89%BE%E4%B8%8D%E5%88%B0/%E5%90%8C%E5%B1%82%E7%BA%A7.png" class="" title="同层级"></li>
-<li>也可以通过增加<code>@ComponentScan</code>注解解决<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(basePackages = <span class="string">"dev.qiuqiu.controller"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(DemoApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>brew下载加速</title>
     <url>/2020/01/06/brew%E4%B8%8B%E8%BD%BD%E5%8A%A0%E9%80%9F/</url>
     <content><![CDATA[<p><strong>Homebrew</strong>是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷。使用<code>brew</code>安装软件时, 可以将brew的仓库访问地址改成<code>alibaba</code>的地址来加速</p>
@@ -231,6 +256,21 @@
 ]]></content>
       <tags>
         <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot web应用中自定义的controller找不到</title>
+    <url>/2020/02/01/SpringBoot-web%E5%BA%94%E7%94%A8%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84controller%E6%89%BE%E4%B8%8D%E5%88%B0/</url>
+    <content><![CDATA[<p>问题：自定义的<code>controller</code>增加<code>@RestController</code>注解后访问 仍返回404</p>
+<img src="/2020/02/01/SpringBoot-web%E5%BA%94%E7%94%A8%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84controller%E6%89%BE%E4%B8%8D%E5%88%B0/%E9%97%AE%E9%A2%98.png" class="" title="问题">
+<p>原因：springboot 推荐<code>启动类</code>与<code>controller包</code>在同一层级，默认也是按这个扫描的<br>解决方案：</p>
+<ol>
+<li>可以放在同一层级，如下图<img src="/2020/02/01/SpringBoot-web%E5%BA%94%E7%94%A8%E4%B8%AD%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84controller%E6%89%BE%E4%B8%8D%E5%88%B0/%E5%90%8C%E5%B1%82%E7%BA%A7.png" class="" title="同层级"></li>
+<li>也可以通过增加<code>@ComponentScan</code>注解解决<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(basePackages = <span class="string">"dev.qiuqiu.controller"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(DemoApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -262,8 +302,8 @@
 </ol>
 ]]></content>
       <tags>
-        <tag>elasticsearch</tag>
         <tag>运维</tag>
+        <tag>elasticsearch</tag>
       </tags>
   </entry>
   <entry>
