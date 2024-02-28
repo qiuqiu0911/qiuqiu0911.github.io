@@ -1,0 +1,17 @@
+# Allow to cache content generation.
+cache:
+  enable: true
+# Remove unnecessary files after hexo generate.
+minify: true
+
+scheme: Gemini
+darkmode: true
+
+creative_commons:
+  # Available values: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | cc-zero
+  license: by-nc-sa
+  # Available values: big | small
+  size: small
+  sidebar: true
+  post: true
+  language: deed.zh
