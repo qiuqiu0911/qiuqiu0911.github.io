@@ -15,3 +15,23 @@ creative_commons:
   sidebar: true
   post: true
   language: deed.zh
+
+menu:
+  home: / || fa fa-home
+  about: /about/ || fa fa-user
+  tags: /tags/ || fa fa-tags
+  categories: /categories/ || fa fa-th
+  archives: /archives/ || fa fa-archive
+  
+# Sidebar Avatar
+avatar:
+  # Replace the default image and set the url here.
+  url: /uploads/avatar.jpg
+  # If true, the avatar will be displayed in circle.
+  rounded: true
+  # If true, the avatar will be rotated with the cursor.
+  rotated: false
+
+social:
+  GitHub: https://github.com/qiuqiu0911 || fab fa-github
+  E-Mail: mailto:qiu_zs@126.com || fa fa-envelope
