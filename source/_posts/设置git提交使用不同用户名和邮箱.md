@@ -17,7 +17,7 @@ updated: 2024-02-28 23:43:46
 
 ```shell
 git config --global user.name xxxx
-git config --global user.name xxxx@xxxx.com
+git config --global user.email xxxx@xxxx.com
 ```
 
 2. 对本地git仓库单独设置用户名和邮箱
@@ -25,7 +25,7 @@ git config --global user.name xxxx@xxxx.com
 ```shell
 # 切换到本地git仓库地址后执行
 git config user.name yyyy
-git config user.name yyyy@yyyy.com
+git config user.email yyyy@yyyy.com
 ```
 
 # 查看生效结果
