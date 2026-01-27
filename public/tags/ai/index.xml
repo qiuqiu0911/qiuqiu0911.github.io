@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AI on 我的技术博客</title>
+    <link>http://localhost:13131/tags/ai/</link>
+    <description>Recent content in AI on 我的技术博客</description>
+    <generator>Hugo -- 0.154.5</generator>
+    <language>zh-cn</language>
+    <copyright>QiuQiu</copyright>
+    <lastBuildDate>Tue, 27 Jan 2026 22:08:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:13131/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OpenAI Whisper 模型深度解析</title>
+      <link>http://localhost:13131/posts/whisper-intro/</link>
+      <pubDate>Tue, 27 Jan 2026 22:08:00 +0800</pubDate>
+      <guid>http://localhost:13131/posts/whisper-intro/</guid>
+      <description>深入了解 OpenAI 强大的自动语音识别系统 Whisper，探究其架构、功能及应用场景。</description>
+    </item>
+  </channel>
+</rss>

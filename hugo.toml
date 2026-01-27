@@ -1,0 +1,33 @@
+baseURL = 'https://example.org/'
+languageCode = 'zh-cn'
+title = '我的技术博客'
+theme = 'PaperMod'
+hasCJKLanguage = true
+copyright = "QiuQiu"
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+
+[params]
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  UseHugoToc = true
+  author = "QiuQiu"
+
+[menu]
+  [[menu.main]]
+    identifier = "archives"
+    name = "归档"
+    url = "/archives/"
+    weight = 10
+  [[menu.main]]
+    identifier = "search"
+    name = "搜索"
+    url = "/search/"
+    weight = 20
