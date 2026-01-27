@@ -1,0 +1,16 @@
+# Hugo default output directory
+public/
+resources/
+.hugo_build.lock
+
+# OS X
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
