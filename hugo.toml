@@ -21,6 +21,12 @@ home = ["HTML", "RSS", "JSON"]
   UseHugoToc = true
   author = "QiuQiu"
 
+  [params.assets]
+    favicon = "/favicon.png"
+    favicon16x16 = "/favicon.png"
+    favicon32x32 = "/favicon.png"
+    apple_touch_icon = "/favicon.png"
+
 [menu]
   [[menu.main]]
     identifier = "archives"
