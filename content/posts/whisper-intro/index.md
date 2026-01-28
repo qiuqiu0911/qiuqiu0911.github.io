@@ -11,7 +11,7 @@ summary: "深入了解 OpenAI 强大的自动语音识别系统 Whisper，探究
 
 **Whisper** 是 OpenAI 开源的一个通用的自动语音识别（ASR）模型。它在大量的多语言和多任务监督数据上进行了训练，能够以极高的准确率将音频转换为文本。
 
-![Whisper Concept](/whisper_concept_art.png)
+![Whisper Concept](whisper_concept_art.png)
 
 ## 核心特性
 
