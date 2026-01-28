@@ -47,6 +47,9 @@ jobs:
       - name: 设置 Pages
         id: pages
         uses: actions/configure-pages@v4
+        with:
+          # 如果 Pages 未启用，自动启用它
+          enablement: true
 
       - name: 安装 Node.js 依赖
         run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
