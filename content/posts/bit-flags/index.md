@@ -76,7 +76,7 @@ public class WindowConfig {
 
 两个位都为 1 时结果为 1，否则为 0：
 
-```
+```text
   00000110  (6)
 & 00000100  (4)
 -----------
@@ -94,7 +94,7 @@ public class WindowConfig {
 
 两个位中有一个为 1 时结果为 1：
 
-```
+```text
   00000010  (2)
 | 00000100  (4)
 -----------
@@ -157,7 +157,7 @@ public class BitFlag {
    ```
 
 2. **检查 DRAGGABLE 标志** (第 0 位)：
-   ```
+   ```text
      00000010  (operationValue = 2)
    & 00000001  (DRAGGABLE = 1)
    -----------
@@ -165,7 +165,7 @@ public class BitFlag {
    ```
 
 3. **检查 ALWAYS_TOP 标志** (第 1 位)：
-   ```
+   ```text
      00000010  (operationValue = 2)
    & 00000010  (ALWAYS_TOP = 2)
    -----------
@@ -173,7 +173,7 @@ public class BitFlag {
    ```
 
 4. **检查 SUPPORT_MIX 标志** (第 2 位)：
-   ```
+   ```text
      00000010  (operationValue = 2)
    & 00000100  (SUPPORT_MIX = 4)
    -----------
