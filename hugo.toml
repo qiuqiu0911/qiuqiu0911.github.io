@@ -27,10 +27,6 @@ home = ["HTML", "RSS", "JSON"]
     favicon32x32 = "favicon.png"
     apple_touch_icon = "favicon.png"
 
-  [params.label]
-    icon = "logo.png"
-    iconHeight = 36
-
 [menu]
   [[menu.main]]
     identifier = "archives"
