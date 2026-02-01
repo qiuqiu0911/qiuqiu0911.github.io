@@ -1,7 +1,7 @@
 # 本地开发时使用根路径，生产环境通过 GitHub Actions 覆盖为 /blog/
 baseURL = '/'
 languageCode = 'zh-cn'
-title = '我的技术博客'
+title = "qiuqiu's blog"
 theme = 'PaperMod'
 hasCJKLanguage = true
 copyright = "QiuQiu"
@@ -27,12 +27,21 @@ home = ["HTML", "RSS", "JSON"]
     favicon32x32 = "favicon.png"
     apple_touch_icon = "favicon.png"
 
+  [params.label]
+    icon = "logo.png"
+    iconHeight = 36
+
 [menu]
   [[menu.main]]
     identifier = "archives"
     name = "归档"
     url = "/archives/"
     weight = 10
+  [[menu.main]]
+    identifier = "tags"
+    name = "标签"
+    url = "/tags/"
+    weight = 15
   [[menu.main]]
     identifier = "search"
     name = "搜索"
