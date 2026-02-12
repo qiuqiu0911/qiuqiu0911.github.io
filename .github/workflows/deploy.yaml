@@ -63,7 +63,7 @@ jobs:
           hugo \
             --gc \
             --minify \
-            --baseURL "https://${{ github.repository_owner }}.github.io/"
+            --baseURL "/"
 
       - name: 上传构建产物
         uses: actions/upload-pages-artifact@v3
