@@ -62,7 +62,6 @@ jobs:
         run: |
           hugo \
             --gc \
-            --minify \
             --baseURL "/"
 
       - name: 上传构建产物
