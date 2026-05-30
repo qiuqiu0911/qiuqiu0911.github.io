@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title desc">
+  <title id="title">V2Ray 分流决策流程</title>
+  <desc id="desc">V2Ray 通过 sniffing 识别域名，优先匹配 Google 规则，再进入 direct 兜底规则。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#111827"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .node { fill: #ffffff; stroke: #1f2937; stroke-width: 2; rx: 12; }
+      .decision { fill: #eef6ff; stroke: #2563eb; stroke-width: 2; }
+      .warp { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; rx: 12; }
+      .direct { fill: #ecfdf5; stroke: #059669; stroke-width: 2; rx: 12; }
+      .text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; font-size: 24px; font-weight: 650; }
+      .sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #4b5563; font-size: 17px; }
+      .small { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #374151; font-size: 15px; }
+      .line { fill: none; stroke: #111827; stroke-width: 2.5; marker-end: url(#arrow); }
+      .label { fill: #ffffff; stroke: #d1d5db; rx: 14; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="700"/>
+  <text x="60" y="64" class="text">分流规则的关键：先识别域名，再按顺序命中规则</text>
+  <text x="60" y="96" class="sub">Google 规则必须放在 direct 兜底规则前，否则会被提前捕获。</text>
+
+  <rect x="430" y="135" width="340" height="88" class="node"/>
+  <text x="600" y="171" text-anchor="middle" class="text">VMess inbound</text>
+  <text x="600" y="199" text-anchor="middle" class="sub">WebSocket 请求进入</text>
+
+  <rect x="430" y="275" width="340" height="88" class="node"/>
+  <text x="600" y="311" text-anchor="middle" class="text">sniffing</text>
+  <text x="600" y="339" text-anchor="middle" class="sub">从 TLS SNI / HTTP Host 还原域名</text>
+
+  <polygon points="600,420 785,505 600,590 415,505" class="decision"/>
+  <text x="600" y="493" text-anchor="middle" class="text">命中 Google?</text>
+  <text x="600" y="523" text-anchor="middle" class="sub">geosite:google / domain</text>
+
+  <rect x="115" y="456" width="250" height="98" class="warp"/>
+  <text x="240" y="496" text-anchor="middle" class="text">outbound: warp</text>
+  <text x="240" y="526" text-anchor="middle" class="sub">socks 127.0.0.1:40000</text>
+
+  <rect x="835" y="456" width="250" height="98" class="direct"/>
+  <text x="960" y="496" text-anchor="middle" class="text">outbound: direct</text>
+  <text x="960" y="526" text-anchor="middle" class="sub">freedom / VPS 原出口</text>
+
+  <path class="line" d="M600 223 V265"/>
+  <path class="line" d="M600 363 V410"/>
+  <path class="line" d="M415 505 H375"/>
+  <path class="line" d="M785 505 H825"/>
+
+  <rect x="356" y="468" width="60" height="34" class="label"/>
+  <text x="386" y="491" text-anchor="middle" class="small">是</text>
+  <rect x="785" y="468" width="60" height="34" class="label"/>
+  <text x="815" y="491" text-anchor="middle" class="small">否</text>
+
+  <text x="90" y="638" class="small">验证信号：日志出现 taking detour [warp] for tcp:www.google.com:443</text>
+  <text x="690" y="638" class="small">验证信号：direct 出口 IP 仍然是 VPS 原 IP</text>
+</svg>

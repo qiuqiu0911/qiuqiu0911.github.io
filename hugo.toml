@@ -1,6 +1,6 @@
 # 站点根路径，本地开发和生产环境均使用 /
 baseURL = '/'
-languageCode = 'zh-cn'
+locale = 'zh-cn'
 title = "qiuqiu's blog"
 theme = 'PaperMod'
 hasCJKLanguage = true

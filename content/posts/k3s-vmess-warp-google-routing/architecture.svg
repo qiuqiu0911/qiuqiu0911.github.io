@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">VMess 与 WARP 分流目标架构</title>
+  <desc id="desc">客户端通过 VMess over WebSocket 进入 V2Ray，Google 域名走 WARP，其他流量走 VPS 原始出口。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#1f2937"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .box { fill: #ffffff; stroke: #1f2937; stroke-width: 2; rx: 12; }
+      .soft { fill: #eef6ff; stroke: #2563eb; }
+      .warp { fill: #fff7ed; stroke: #ea580c; }
+      .direct { fill: #ecfdf5; stroke: #059669; }
+      .text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; font-size: 24px; font-weight: 650; }
+      .sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #4b5563; font-size: 17px; }
+      .small { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #374151; font-size: 15px; }
+      .line { fill: none; stroke: #1f2937; stroke-width: 2.5; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #6b7280; stroke-width: 2.5; stroke-dasharray: 8 8; marker-end: url(#arrow); }
+      .label { fill: #ffffff; stroke: #d1d5db; rx: 16; }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="620"/>
+  <text x="60" y="62" class="text">目标：只让 Google 相关域名走 WARP</text>
+  <text x="60" y="94" class="sub">WARP 作为 Pod 内本地 socks 代理，V2Ray 的 direct 出口仍保留 VPS 原始 IP。</text>
+
+  <rect x="70" y="210" width="210" height="118" class="box soft"/>
+  <text x="175" y="260" text-anchor="middle" class="text">Client</text>
+  <text x="175" y="292" text-anchor="middle" class="sub">VMess over WebSocket</text>
+
+  <rect x="380" y="176" width="280" height="190" class="box"/>
+  <text x="520" y="230" text-anchor="middle" class="text">V2Ray</text>
+  <text x="520" y="262" text-anchor="middle" class="sub">inbound: vmess-in</text>
+  <text x="520" y="294" text-anchor="middle" class="sub">routing + sniffing</text>
+  <text x="520" y="326" text-anchor="middle" class="small">按域名选择 outbound</text>
+
+  <rect x="790" y="128" width="260" height="118" class="box warp"/>
+  <text x="920" y="178" text-anchor="middle" class="text">WARP</text>
+  <text x="920" y="210" text-anchor="middle" class="sub">127.0.0.1:40000</text>
+
+  <rect x="790" y="352" width="260" height="118" class="box direct"/>
+  <text x="920" y="402" text-anchor="middle" class="text">Direct</text>
+  <text x="920" y="434" text-anchor="middle" class="sub">VPS original egress</text>
+
+  <path class="line" d="M280 269 H370"/>
+  <path class="line" d="M660 238 C710 238 720 187 780 187"/>
+  <path class="line" d="M660 304 C710 304 720 411 780 411"/>
+  <path class="dash" d="M1050 187 H1130"/>
+  <path class="dash" d="M1050 411 H1130"/>
+
+  <rect x="682" y="142" width="150" height="38" class="label"/>
+  <text x="757" y="167" text-anchor="middle" class="small">geosite:google</text>
+  <rect x="674" y="402" width="150" height="38" class="label"/>
+  <text x="749" y="427" text-anchor="middle" class="small">其他流量</text>
+
+  <text x="1090" y="178" class="sub">Google</text>
+  <text x="1090" y="210" class="sub">APIs / Static</text>
+  <text x="1090" y="404" class="sub">普通网站</text>
+  <text x="1090" y="436" class="sub">原 VPS 出口</text>
+</svg>
